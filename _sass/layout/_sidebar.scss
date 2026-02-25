@@ -64,15 +64,84 @@
   margin-bottom: 1em;
 
   @include breakpoint($large) {
-    position: relative;
-    float: right;
+    position: absolute;
+    top: 0;
+    inset-inline-end: 0;
     width: $right-sidebar-width-narrow;
-    margin-left: span(0.5 of 12);
+    margin-inline-end: -1 * $right-sidebar-width-narrow;
+    padding-inline-start: 1em;
     z-index: 10;
+
+    &.sticky {
+      @include clearfix();
+      //position: -webkit-sticky;
+      position: sticky;
+      top: 5em;
+      float: inline-end;
+
+      .toc {
+        background-color: var(--global-toc-bg-color);
+        border: 1px solid var(--global-border-color);
+        border-radius: $border-radius;
+        box-shadow: $box-shadow;
+        padding: 1em;
+
+        .nav__title {
+          color: var(--global-text-color);
+          font-size: $type-size-5;
+          background: transparent;
+          border: 0;
+          padding: 0.25rem 0;
+        }
+
+        .toc__menu {
+          overflow-y: auto;
+          max-height: calc(100vh - 7em);
+
+          margin: 0;
+          padding: 0.25rem 0;
+          width: 100%;
+          list-style: none;
+          font-size: $type-size-5;
+
+          a {
+            display: block;
+            padding: 0.25rem 0;
+            color: var(--global-text-color);
+            font-size: $type-size-6;
+            font-weight: normal;
+            line-height: 1.5;
+            border-bottom: 0;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+
+          > li > a {
+            font-weight: bold;
+          }
+
+          li ul > li a {
+            padding-left: 1rem;
+            font-weight: normal;
+          }
+
+          li ul li ul > li a {
+            padding-left: 2rem;
+          }
+
+          li ul li ul li ul > li a {
+            padding-left: 3rem;
+          }
+        }
+      }
+    }
   }
 
   @include breakpoint($x-large) {
     width: $right-sidebar-width;
+    margin-inline-end: -1 * $right-sidebar-width;
   }
 }
 
@@ -81,60 +150,60 @@
    Table of contents
    ========================================================================== */
 
-.toc {
-  background-color: var(--global-toc-bg-color);
-  border: 1px solid var(--global-border-color);
-  border-radius: $border-radius;
-  box-shadow: $box-shadow;
-  padding: 1em;
-
-  .nav__title {
-    color: var(--global-text-color);
-    font-size: $type-size-6;
-    background: transparent;
-    border: 0;
-    padding: 0;
-  }
-
-  .toc__menu {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    list-style: none;
-    font-size: $type-size-6;
-
-    a {
-      display: block;
-      padding: 0.25rem 0;
-      color: var(--global-text-color);
-      font-size: $type-size-7;
-      font-weight: normal;
-      line-height: 1.5;
-      border-bottom: 0;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    > li > a {
-      font-weight: bold;
-    }
-
-    li ul > li a {
-      padding-left: 1rem;
-      font-weight: normal;
-    }
-
-    li ul li ul > li a {
-      padding-left: 2rem;
-    }
-
-    li ul li ul li ul > li a {
-      padding-left: 3rem;
-    }
-  }
-}
+//.toc {
+//  background-color: var(--global-toc-bg-color);
+//  border: 1px solid var(--global-border-color);
+//  border-radius: $border-radius;
+//  box-shadow: $box-shadow;
+//  padding: 1em;
+//
+//  .nav__title {
+//    color: var(--global-text-color);
+//    font-size: $type-size-6;
+//    background: transparent;
+//    border: 0;
+//    padding: 0;
+//  }
+//
+//  .toc__menu {
+//    margin: 0;
+//    padding: 0;
+//    width: 100%;
+//    list-style: none;
+//    font-size: $type-size-6;
+//
+//    a {
+//      display: block;
+//      padding: 0.25rem 0;
+//      color: var(--global-text-color);
+//      font-size: $type-size-7;
+//      font-weight: normal;
+//      line-height: 1.5;
+//      border-bottom: 0;
+//
+//      &:hover {
+//        text-decoration: underline;
+//      }
+//    }
+//
+//    > li > a {
+//      font-weight: bold;
+//    }
+//
+//    li ul > li a {
+//      padding-left: 1rem;
+//      font-weight: normal;
+//    }
+//
+//    li ul li ul > li a {
+//      padding-left: 2rem;
+//    }
+//
+//    li ul li ul li ul > li a {
+//      padding-left: 3rem;
+//    }
+//  }
+//}
 
 /*
    Author profile and links

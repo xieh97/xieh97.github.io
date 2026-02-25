@@ -8,7 +8,7 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-site_theme               : "default"  # The available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
+site_theme               : "dirt"  # The available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
 title                    : "Huang's Home"
 title_separator          : "-"
 name                     : &name "Huang Xie"
@@ -246,8 +246,8 @@ defaults:
       author_profile: true
       read_time: true
       comments: true
-      share: true
-      related: true
+      share: false
+      related: false
   # _pages
   - scope:
       path: ""
