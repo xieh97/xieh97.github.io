@@ -25,7 +25,8 @@ redirect_from:
 
 📰 News
 --------
-
+- [2026-03-16] Joined the [Multimodality Research Group](https://www.helsinki.fi/multimodality) at University of Helsinki as a postdoctoral researcher.
+- [2026-02-08] Officially completed my PhD in the [Audio Research Group](https://research.tuni.fi/arg/) at Tampere University.
 
 📚 Publications
 --------
