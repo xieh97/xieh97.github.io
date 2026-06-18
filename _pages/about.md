@@ -13,6 +13,7 @@ redirect_from:
 🎓 About Me
 --------
 - 🌱 PhD in Signal Processing and Machine Learning
+- 👥 MSc in Data Engineering and Machine Learning | MEng in Software Engineering
 - 💻 Ex-Software Engineer in Web Development
 - 🎯 Passionate about bridging AI research and real-world applications
 
@@ -90,6 +91,6 @@ _2019 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics 
 
 🤝 Academic Services
 --------
-- 🎯 **Conference Reviewer**: ICASSP (2021--26), DCASE (2022--25)
+- 🎯 **Conference Reviewer**: ICASSP (2021--26), DCASE (2022--26), IJCNN (2025--27)
 - 📋 **Journal Reviewer**: TASLP
 - 🌐 **Workshop Organizer**: DCASE Challenge (2022--26)
