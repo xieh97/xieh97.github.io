@@ -12,10 +12,12 @@ redirect_from:
 
 🎓 About Me
 --------
-- 🌱 PhD in Signal Processing and Machine Learning
-- 👥 MSc in Data Engineering and Machine Learning | MEng in Software Engineering
+- 🕊️ Postdoctoral Researcher, University of Helsinki
+- 🐦‍🔥 PhD in Signal Processing and Machine Learning, Tampere University
+- 🦉 MSc in Data Engineering and Machine Learning, Tampere University
+- 🦩 MEng in Software Engineering, University of Science and Technology of China
 - 💻 Ex-Software Engineer in Web Development
-- 🎯 Passionate about bridging AI research and real-world applications
+- 🪶 Passionate about bridging AI research and real-world applications
 
 🧠 Research Interests
 --------
