@@ -1,0 +1,17 @@
+---
+title: "👋 Hi, I'm Huang Xie (谢晃)"
+---
+
+> "Science is an error-correcting process."
+> — Charles S. Peirce
+
+I'm a postdoctoral researcher in the [Multimodality Research Group](https://www.helsinki.fi/multimodality) at the University of Helsinki.
+I earned my PhD in 2026 from the [Audio Research Group](https://research.tuni.fi/arg/) at Tampere University, where I also completed my MSc in Data Engineering and Machine Learning in 2020.
+I hold an MEng in Software Engineering from the University of Science and Technology of China (2014).
+Prior to my academic career, I spent over seven years in the industry as a full-stack software engineer.
+I'm passionate about bridging AI research and real-world applications.
+
+## 📰 News
+
+- **[2026-03-16]** Joined the [Multimodality Research Group](https://www.helsinki.fi/multimodality) at University of Helsinki as a postdoctoral researcher.
+- **[2026-02-08]** Officially completed my PhD in the [Audio Research Group](https://research.tuni.fi/arg/) at Tampere University.
