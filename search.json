@@ -4,20 +4,69 @@
     "href": "publications.html",
     "title": "📚 Publications",
     "section": "",
-    "text": "📘 Journal Articles\n\nHuang Xie, Khazar Khorrami, Okko Räsänen, Tuomas Virtanen (2025). Text-Based Audio Retrieval by Learning From Similarities Between Audio Captions. IEEE Signal Processing Letters (SPL), vol. 32, pp. 221–225. DOI: 10.1109/LSP.2024.3511414\nHuang Xie, Tuomas Virtanen (2021). Zero-Shot Audio Classification Via Semantic Embeddings. IEEE/ACM Transactions on Audio, Speech, and Language Processing (TASLP), vol. 29, pp. 1233–1242. DOI: 10.1109/TASLP.2021.3065234\n\n\n\n📄 Conference Papers\n\nDuygu Dogan, Huang Xie, Toni Heittola, Tuomas Virtanen (2025). On the Role of Training Class Distribution in Zero-Shot Audio Classification. Proceedings of the 10th Workshop on Detection and Classication of Acoustic Scenes and Events (DCASE 2025), pp. 205–209.\nDuygu Dogan, Huang Xie, Toni Heittola, Tuomas Virtanen (2024). Multi-Label Zero-Shot Audio Classification with Temporal Attention. Proceedings of the 18th International Workshop on Acoustic Signal Enhancement (IWAENC), pp. 250–254.\nHuang Xie, Khazar Khorrami, Okko Räsänen, Tuomas Virtanen (2024). Integrating Continuous and Binary Relevances in Audio-Text Relevance Learning. Proceedings of the 9th Workshop on Detection and Classification of Acoustic Scenes and Events (DCASE 2024), pp. 201–205.\nHuang Xie, Khazar Khorrami, Okko Räsänen, Tuomas Virtanen (2023). Crowdsourcing and Evaluating Text-Based Audio Retrieval Relevances. Proceedings of the 8th Workshop on Detection and Classification of Acoustic Scenes and Events (DCASE 2023), pp. 226–230.\nHuang Xie, Okko Räsänen, Tuomas Virtanen (2023). On Negative Sampling for Contrastive Audio-Text Retrieval. ICASSP 2023 - 2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), pp. 1–5. DOI: 10.1109/ICASSP49357.2023.10095319\nDuygu Dogan, Huang Xie, Toni Heittola, Tuomas Virtanen (2022). Zero-Shot Audio Classification using Image Embeddings. Proceedings of the 30th European Signal Processing Conference (EUSIPCO), pp. 1–5.\nHuang Xie, Samuel Lipping, Tuomas Virtanen (2022). Language-based Audio Retrieval Task in DCASE 2022 Challenge. Proceedings of the 7th Workshop on Detection and Classification of Acoustic Scenes and Events (DCASE 2022), pp. 216–220.\nHuang Xie, Okko Räsänen, Konstantinos Drossos, Tuomas Virtanen (2022). Unsupervised Audio-Caption Aligning Learns Correspondences Between Individual Sound Events and Textual Phrases. ICASSP 2022 - 2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), pp. 8867–8871. DOI: 10.1109/ICASSP43922.2022.9747336\nHuang Xie, Okko Räsänen, Tuomas Virtanen (2021). Zero-Shot Audio Classification with Factored Linear and Nonlinear Acoustic-Semantic Projections. ICASSP 2021 - 2021 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), pp. 326–330. DOI: 10.1109/ICASSP39728.2021.9414994\nHuang Xie, Tuomas Virtanen (2019). Zero-Shot Audio Classification Based On Class Label Embeddings. 2019 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA), pp. 264–267. DOI: 10.1109/WASPAA.2019.8937283"
+    "text": "Here are my recent publications."
+  },
+  {
+    "objectID": "publications.html#journal-articles",
+    "href": "publications.html#journal-articles",
+    "title": "📚 Publications",
+    "section": "📘 Journal Articles",
+    "text": "📘 Journal Articles\n\nHuang Xie, Khazar Khorrami, Okko Räsänen, Tuomas Virtanen (2025). Text-Based Audio Retrieval by Learning From Similarities Between Audio Captions. IEEE Signal Processing Letters (SPL), vol. 32, pp. 221–225. DOI: 10.1109/LSP.2024.3511414\nHuang Xie, Tuomas Virtanen (2021). Zero-Shot Audio Classification Via Semantic Embeddings. IEEE/ACM Transactions on Audio, Speech, and Language Processing (TASLP), vol. 29, pp. 1233–1242. DOI: 10.1109/TASLP.2021.3065234"
+  },
+  {
+    "objectID": "publications.html#conference-papers",
+    "href": "publications.html#conference-papers",
+    "title": "📚 Publications",
+    "section": "📄 Conference Papers",
+    "text": "📄 Conference Papers\n\nDuygu Dogan, Huang Xie, Toni Heittola, Tuomas Virtanen (2025). On the Role of Training Class Distribution in Zero-Shot Audio Classification. Proceedings of the 10th Workshop on Detection and Classication of Acoustic Scenes and Events (DCASE 2025), pp. 205–209.\nDuygu Dogan, Huang Xie, Toni Heittola, Tuomas Virtanen (2024). Multi-Label Zero-Shot Audio Classification with Temporal Attention. Proceedings of the 18th International Workshop on Acoustic Signal Enhancement (IWAENC), pp. 250–254.\nHuang Xie, Khazar Khorrami, Okko Räsänen, Tuomas Virtanen (2024). Integrating Continuous and Binary Relevances in Audio-Text Relevance Learning. Proceedings of the 9th Workshop on Detection and Classification of Acoustic Scenes and Events (DCASE 2024), pp. 201–205.\nHuang Xie, Khazar Khorrami, Okko Räsänen, Tuomas Virtanen (2023). Crowdsourcing and Evaluating Text-Based Audio Retrieval Relevances. Proceedings of the 8th Workshop on Detection and Classification of Acoustic Scenes and Events (DCASE 2023), pp. 226–230.\nHuang Xie, Okko Räsänen, Tuomas Virtanen (2023). On Negative Sampling for Contrastive Audio-Text Retrieval. ICASSP 2023 - 2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), pp. 1–5. DOI: 10.1109/ICASSP49357.2023.10095319\nDuygu Dogan, Huang Xie, Toni Heittola, Tuomas Virtanen (2022). Zero-Shot Audio Classification using Image Embeddings. Proceedings of the 30th European Signal Processing Conference (EUSIPCO), pp. 1–5.\nHuang Xie, Samuel Lipping, Tuomas Virtanen (2022). Language-based Audio Retrieval Task in DCASE 2022 Challenge. Proceedings of the 7th Workshop on Detection and Classification of Acoustic Scenes and Events (DCASE 2022), pp. 216–220.\nHuang Xie, Okko Räsänen, Konstantinos Drossos, Tuomas Virtanen (2022). Unsupervised Audio-Caption Aligning Learns Correspondences Between Individual Sound Events and Textual Phrases. ICASSP 2022 - 2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), pp. 8867–8871. DOI: 10.1109/ICASSP43922.2022.9747336\nHuang Xie, Okko Räsänen, Tuomas Virtanen (2021). Zero-Shot Audio Classification with Factored Linear and Nonlinear Acoustic-Semantic Projections. ICASSP 2021 - 2021 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), pp. 326–330. DOI: 10.1109/ICASSP39728.2021.9414994\nHuang Xie, Tuomas Virtanen (2019). Zero-Shot Audio Classification Based On Class Label Embeddings. 2019 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA), pp. 264–267. DOI: 10.1109/WASPAA.2019.8937283"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "🕊️ About Me",
+    "title": "Huang Xie, PhD",
     "section": "",
-    "text": "🎓 Education & Work\n\n🕊️ [2026 – present] Postdoctoral Researcher, University of Helsinki\n🐦‍🔥 [2021 – 2025] PhD in Signal Processing and Machine Learning, Tampere University\n🦉 [2018 – 2020] MSc in Data Engineering and Machine Learning, Tampere University\n🦩 [2010 – 2014] MEng in Software Engineering, University of Science and Technology of China\n💻 [2011 – 2018] Ex-Software Engineer in Web Development\n🪶 Passionate about bridging AI research and real-world applications\n\n\n\n🤝 Academic Services\n\n🎯 Conference Reviewer: ICASSP (2021–26), DCASE (2022–26), IJCNN (2025–27)\n📋 Journal Reviewer: TASLP\n🌐 Workshop Organizer: DCASE Challenge (2022–26)"
+    "text": "GitHub\n  \n  \n      LinkedIn\n  \n  \n      ORCID\n  \n  \n      Google Scholar\n  \n\n  \n  \nI’m a postdoctoral researcher in the Multimodality Research Group at the University of Helsinki. I earned my PhD in 2026 from the Audio Research Group at Tampere University, where I also completed my MSc in Data Engineering and Machine Learning in 2020. I hold an MEng in Software Engineering from the University of Science and Technology of China (2014). Prior to my academic career, I spent over seven years in the industry as a full-stack software engineer. I’m passionate about bridging AI research and real-world applications.\n\n\n\n🤖 Multimodal Deep Learning\n🎬 Audio & Video Understanding\n🔍 Self-Supervised Learning, Zero-Shot Learning\n💻 Software Development\n\n\n\n\n\n🐦‍🔥 Ph.D. in Signal Processing and Machine Learning ∙ Tampere University ∙ 2026\n🦉 M.Sc. in Data Engineering and Machine Learning ∙ Tampere University ∙ 2020\n🦩 M.Eng. in Software Engineering ∙ University of Science and Technology of China ∙ 2014\n🕊️ B.Eng. in Aircraft Design and Engineering ∙ Beihang University ∙ 2010\n\n\n\n\n\n🎓 Postdoctoral Researcher ∙ University of Helsinki ∙ 2026 – Present\n🎓 Doctoral Researcher ∙ Tampere University ∙ 2021 – 2025\n🎓 Research Assistant ∙ Tampere University ∙ 2019 – 2020\n💻 Fullstack Software Engineer ∙ Bohai Commodity Exchange ∙ 2015 – 2018\n💻 Fullstack Software Engineer ∙ Industrial Software Research Institute ∙ 2014 – 2015\n💻 Software Engineer Intern ∙ Shanghai Advanced Research Institute ∙ 2013 – 2014\n💻 Software Engineer Intern ∙ CASIC Second Academy ∙ 2011 – 2012\n\n\n\n\n\n🎯 Conference Reviewer: ICASSP (2021–26), DCASE (2022–26), IJCNN (2025–27)\n📋 Journal Reviewer: TASLP\n🌐 Workshop Organizer: DCASE Challenge (2022–26)"
+  },
+  {
+    "objectID": "about.html#research-interests",
+    "href": "about.html#research-interests",
+    "title": "Huang Xie, PhD",
+    "section": "",
+    "text": "🤖 Multimodal Deep Learning\n🎬 Audio & Video Understanding\n🔍 Self-Supervised Learning, Zero-Shot Learning\n💻 Software Development"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "Huang Xie, PhD",
+    "section": "",
+    "text": "🐦‍🔥 Ph.D. in Signal Processing and Machine Learning ∙ Tampere University ∙ 2026\n🦉 M.Sc. in Data Engineering and Machine Learning ∙ Tampere University ∙ 2020\n🦩 M.Eng. in Software Engineering ∙ University of Science and Technology of China ∙ 2014\n🕊️ B.Eng. in Aircraft Design and Engineering ∙ Beihang University ∙ 2010"
+  },
+  {
+    "objectID": "about.html#experience",
+    "href": "about.html#experience",
+    "title": "Huang Xie, PhD",
+    "section": "",
+    "text": "🎓 Postdoctoral Researcher ∙ University of Helsinki ∙ 2026 – Present\n🎓 Doctoral Researcher ∙ Tampere University ∙ 2021 – 2025\n🎓 Research Assistant ∙ Tampere University ∙ 2019 – 2020\n💻 Fullstack Software Engineer ∙ Bohai Commodity Exchange ∙ 2015 – 2018\n💻 Fullstack Software Engineer ∙ Industrial Software Research Institute ∙ 2014 – 2015\n💻 Software Engineer Intern ∙ Shanghai Advanced Research Institute ∙ 2013 – 2014\n💻 Software Engineer Intern ∙ CASIC Second Academy ∙ 2011 – 2012"
+  },
+  {
+    "objectID": "about.html#academic-services",
+    "href": "about.html#academic-services",
+    "title": "Huang Xie, PhD",
+    "section": "",
+    "text": "🎯 Conference Reviewer: ICASSP (2021–26), DCASE (2022–26), IJCNN (2025–27)\n📋 Journal Reviewer: TASLP\n🌐 Workshop Organizer: DCASE Challenge (2022–26)"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "👋 Hi, I’m Huang Xie (谢晃)",
     "section": "",
-    "text": "“Science is an error-correcting process.” — Charles S. Peirce\n\n\n🎓 About Me\nI’m a postdoctoral researcher in the Multimodality Research Group at the University of Helsinki. I earned my PhD in 2026 from the Audio Research Group at Tampere University, where I also completed my MSc in Data Engineering and Machine Learning in 2020. I hold an MEng in Software Engineering from the University of Science and Technology of China (2014). Prior to my academic career, I spent over seven years in the industry as a full-stack software engineer.\n\n🎭 Multimodal Machine Learning\n🎬 Audio & Video Understanding\n🤖 Deep Learning\n🔍 Self-Supervised Learning\n💻 Software Development\n\n\n\n📰 News\n\n[2026-03-16] Joined the Multimodality Research Group at University of Helsinki as a postdoctoral researcher.\n[2026-02-08] Officially completed my PhD in the Audio Research Group at Tampere University."
+    "text": "“Science is an error-correcting process.” — Charles S. Peirce\nI’m a postdoctoral researcher in the Multimodality Research Group at the University of Helsinki. I earned my PhD in 2026 from the Audio Research Group at Tampere University, where I also completed my MSc in Data Engineering and Machine Learning in 2020. I hold an MEng in Software Engineering from the University of Science and Technology of China (2014). Prior to my academic career, I spent over seven years in the industry as a full-stack software engineer. I’m passionate about bridging AI research and real-world applications."
+  },
+  {
+    "objectID": "index.html#news",
+    "href": "index.html#news",
+    "title": "👋 Hi, I’m Huang Xie (谢晃)",
+    "section": "📰 News",
+    "text": "📰 News\n\n[2026-03-16] Joined the Multimodality Research Group at University of Helsinki as a postdoctoral researcher.\n[2026-02-08] Officially completed my PhD in the Audio Research Group at Tampere University."
   }
 ]
