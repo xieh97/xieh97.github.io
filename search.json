@@ -1,0 +1,142 @@
+[
+  {
+    "objectID": "publications.html",
+    "href": "publications.html",
+    "title": "📚 Publications",
+    "section": "",
+    "text": "Here are my recent publications."
+  },
+  {
+    "objectID": "publications.html#journal-articles",
+    "href": "publications.html#journal-articles",
+    "title": "📚 Publications",
+    "section": "📘 Journal Articles",
+    "text": "📘 Journal Articles\n\nHuang Xie, Khazar Khorrami, Okko Räsänen, Tuomas Virtanen (2025). Text-Based Audio Retrieval by Learning From Similarities Between Audio Captions. IEEE Signal Processing Letters (SPL), vol. 32, pp. 221–225. DOI: 10.1109/LSP.2024.3511414\nHuang Xie, Tuomas Virtanen (2021). Zero-Shot Audio Classification Via Semantic Embeddings. IEEE/ACM Transactions on Audio, Speech, and Language Processing (TASLP), vol. 29, pp. 1233–1242. DOI: 10.1109/TASLP.2021.3065234"
+  },
+  {
+    "objectID": "publications.html#conference-papers",
+    "href": "publications.html#conference-papers",
+    "title": "📚 Publications",
+    "section": "📄 Conference Papers",
+    "text": "📄 Conference Papers\n\nDuygu Dogan, Huang Xie, Toni Heittola, Tuomas Virtanen (2025). On the Role of Training Class Distribution in Zero-Shot Audio Classification. Proceedings of the 10th Workshop on Detection and Classication of Acoustic Scenes and Events (DCASE 2025), pp. 205–209.\nDuygu Dogan, Huang Xie, Toni Heittola, Tuomas Virtanen (2024). Multi-Label Zero-Shot Audio Classification with Temporal Attention. Proceedings of the 18th International Workshop on Acoustic Signal Enhancement (IWAENC), pp. 250–254.\nHuang Xie, Khazar Khorrami, Okko Räsänen, Tuomas Virtanen (2024). Integrating Continuous and Binary Relevances in Audio-Text Relevance Learning. Proceedings of the 9th Workshop on Detection and Classification of Acoustic Scenes and Events (DCASE 2024), pp. 201–205.\nHuang Xie, Khazar Khorrami, Okko Räsänen, Tuomas Virtanen (2023). Crowdsourcing and Evaluating Text-Based Audio Retrieval Relevances. Proceedings of the 8th Workshop on Detection and Classification of Acoustic Scenes and Events (DCASE 2023), pp. 226–230.\nHuang Xie, Okko Räsänen, Tuomas Virtanen (2023). On Negative Sampling for Contrastive Audio-Text Retrieval. ICASSP 2023 - 2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), pp. 1–5. DOI: 10.1109/ICASSP49357.2023.10095319\nDuygu Dogan, Huang Xie, Toni Heittola, Tuomas Virtanen (2022). Zero-Shot Audio Classification using Image Embeddings. Proceedings of the 30th European Signal Processing Conference (EUSIPCO), pp. 1–5.\nHuang Xie, Samuel Lipping, Tuomas Virtanen (2022). Language-based Audio Retrieval Task in DCASE 2022 Challenge. Proceedings of the 7th Workshop on Detection and Classification of Acoustic Scenes and Events (DCASE 2022), pp. 216–220.\nHuang Xie, Okko Räsänen, Konstantinos Drossos, Tuomas Virtanen (2022). Unsupervised Audio-Caption Aligning Learns Correspondences Between Individual Sound Events and Textual Phrases. ICASSP 2022 - 2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), pp. 8867–8871. DOI: 10.1109/ICASSP43922.2022.9747336\nHuang Xie, Okko Räsänen, Tuomas Virtanen (2021). Zero-Shot Audio Classification with Factored Linear and Nonlinear Acoustic-Semantic Projections. ICASSP 2021 - 2021 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), pp. 326–330. DOI: 10.1109/ICASSP39728.2021.9414994\nHuang Xie, Tuomas Virtanen (2019). Zero-Shot Audio Classification Based On Class Label Embeddings. 2019 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA), pp. 264–267. DOI: 10.1109/WASPAA.2019.8937283"
+  },
+  {
+    "objectID": "posts/2026-02-24/index.html",
+    "href": "posts/2026-02-24/index.html",
+    "title": "How to Install Label Studio for Local Development",
+    "section": "",
+    "text": "This tutorial introduces how to install Label Studio for local development."
+  },
+  {
+    "objectID": "posts/2026-02-24/index.html#about-label-studio",
+    "href": "posts/2026-02-24/index.html#about-label-studio",
+    "title": "How to Install Label Studio for Local Development",
+    "section": "About Label Studio",
+    "text": "About Label Studio\n\n\n\nPicture from https://github.com/HumanSignal/label-studio (licensed under the Apache License 2.0 © Heartex)\n\n\nLabel Studio is an open source data labeling tool that supports multiple projects, users, and data types in one platform. It supports labeling data types like audio, text, images, videos, and time series with a simple and straightforward UI and exporting to various model formats. It can be used to prepare raw data or improve existing training data to get more accurate ML models.1\n1 https://github.com/HumanSignal/label-studio."
+  },
+  {
+    "objectID": "posts/2026-02-24/index.html#prerequirements",
+    "href": "posts/2026-02-24/index.html#prerequirements",
+    "title": "How to Install Label Studio for Local Development",
+    "section": "Prerequirements",
+    "text": "Prerequirements\nBefore starting this tutorial, ensure that the following tools are installed on your local environment.\n\nPython 3.13 Download\nYarn 1.22.22 Download\nNodeJS v24.13.1 Download\nGit for Windows 2.53.0 Download"
+  },
+  {
+    "objectID": "posts/2026-02-24/index.html#get-the-source",
+    "href": "posts/2026-02-24/index.html#get-the-source",
+    "title": "How to Install Label Studio for Local Development",
+    "section": "📥 1. Get the Source",
+    "text": "📥 1. Get the Source\nThe first step is to download the latest Label Studio from its GitHub repository.\n# Clone the repository (use `--depth 1` to accelerate downloading)\ngit clone https://github.com/HumanSignal/label-studio.git --depth 1\n\n# Switch to the source directory (the root directory)\ncd label-studio"
+  },
+  {
+    "objectID": "posts/2026-02-24/index.html#set-up-python-environment",
+    "href": "posts/2026-02-24/index.html#set-up-python-environment",
+    "title": "How to Install Label Studio for Local Development",
+    "section": "🐍 2. Set Up Python Environment",
+    "text": "🐍 2. Set Up Python Environment\n# Install poetry (for Python package dependency management)\npip install poetry\n\n# Check poetry installation\npoetry env info\n\n# Set up poetry virtual environment\npoetry config virtualenvs.in-project true\n\n# Install all Python package dependencies\npoetry install"
+  },
+  {
+    "objectID": "posts/2026-02-24/index.html#create-database",
+    "href": "posts/2026-02-24/index.html#create-database",
+    "title": "How to Install Label Studio for Local Development",
+    "section": "🗄️ 3. Create Database",
+    "text": "🗄️ 3. Create Database\n# Run database migrations\npoetry run python label_studio/manage.py migrate\n\n# Collect static resources (for the frontend)\npoetry run python label_studio/manage.py collectstatic --noinput"
+  },
+  {
+    "objectID": "posts/2026-02-24/index.html#build-frontend-resources-important",
+    "href": "posts/2026-02-24/index.html#build-frontend-resources-important",
+    "title": "How to Install Label Studio for Local Development",
+    "section": "⚛️ 4. Build Frontend Resources (Important!)",
+    "text": "⚛️ 4. Build Frontend Resources (Important!)\n# Switch to the frontend directory\ncd web\n\n# Configure yarn with Git Bash (for Windows)\nyarn config set script-shell \"~/Git/bin/bash.exe\"\n\n# Install dependencies\nyarn install --frozen-lockfile\n\n# Build frontend resources\nyarn build\n\n# Switch to the root directory\ncd ..\nAfter the build is complete, the frontend files will be generated in the web/dist/apps/labelstudio directory, which is the path that Django looks for when collecting static files."
+  },
+  {
+    "objectID": "posts/2026-02-24/index.html#collect-static-resources-again",
+    "href": "posts/2026-02-24/index.html#collect-static-resources-again",
+    "title": "How to Install Label Studio for Local Development",
+    "section": "🔄 5. Collect Static Resources (Again!)",
+    "text": "🔄 5. Collect Static Resources (Again!)\n# Collect static resources\npoetry run python label_studio/manage.py collectstatic --noinput"
+  },
+  {
+    "objectID": "posts/2026-02-24/index.html#start-dev-server",
+    "href": "posts/2026-02-24/index.html#start-dev-server",
+    "title": "How to Install Label Studio for Local Development",
+    "section": "🚀 6. Start Dev Server",
+    "text": "🚀 6. Start Dev Server\n# Run dev server\npoetry run python label_studio/manage.py runserver\nNow, you can access the Label Studio web interface by visiting http://localhost:8080."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Huang Xie, PhD",
+    "section": "",
+    "text": "GitHub\n  \n  \n      LinkedIn\n  \n  \n      ORCID\n  \n  \n      Google Scholar\n  \n\n  \n  \nI’m a postdoctoral researcher in the Multimodality Research Group at the University of Helsinki. I earned my PhD in 2026 from the Audio Research Group at Tampere University, where I also completed my MSc in Data Engineering and Machine Learning in 2020. I hold an MEng in Software Engineering from the University of Science and Technology of China (2014). Prior to my academic career, I spent over seven years in the industry as a full-stack software engineer. I’m passionate about bridging AI research and real-world applications.\n\n\n\n🤖 Multimodal Deep Learning\n🎬 Audio & Video Understanding\n🔍 Self-Supervised Learning, Zero-Shot Learning\n💻 Software Development\n\n\n\n\n\n🐦‍🔥 Ph.D. in Signal Processing and Machine Learning ∙ Tampere University ∙ 2026\n🦉 M.Sc. in Data Engineering and Machine Learning ∙ Tampere University ∙ 2020\n🦩 M.Eng. in Software Engineering ∙ University of Science and Technology of China ∙ 2014\n🕊️ B.Eng. in Aircraft Design and Engineering ∙ Beihang University ∙ 2010\n\n\n\n\n\n🎓 Postdoctoral Researcher ∙ University of Helsinki ∙ 2026 – Present\n🎓 Doctoral Researcher ∙ Tampere University ∙ 2021 – 2025\n🎓 Research Assistant ∙ Tampere University ∙ 2019 – 2020\n💻 Fullstack Software Engineer ∙ Bohai Commodity Exchange ∙ 2015 – 2018\n💻 Fullstack Software Engineer ∙ Industrial Software Research Institute ∙ 2014 – 2015\n💻 Software Engineer Intern ∙ Shanghai Advanced Research Institute ∙ 2013 – 2014\n💻 Software Engineer Intern ∙ CASIC Second Academy ∙ 2011 – 2012\n\n\n\n\n\n🎯 Conference Reviewer: ICASSP (2021–26), DCASE (2022–26), IJCNN (2025–27)\n📋 Journal Reviewer: TASLP\n🌐 Workshop Organizer: DCASE Challenge (2022–26)"
+  },
+  {
+    "objectID": "about.html#research-interests",
+    "href": "about.html#research-interests",
+    "title": "Huang Xie, PhD",
+    "section": "",
+    "text": "🤖 Multimodal Deep Learning\n🎬 Audio & Video Understanding\n🔍 Self-Supervised Learning, Zero-Shot Learning\n💻 Software Development"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "Huang Xie, PhD",
+    "section": "",
+    "text": "🐦‍🔥 Ph.D. in Signal Processing and Machine Learning ∙ Tampere University ∙ 2026\n🦉 M.Sc. in Data Engineering and Machine Learning ∙ Tampere University ∙ 2020\n🦩 M.Eng. in Software Engineering ∙ University of Science and Technology of China ∙ 2014\n🕊️ B.Eng. in Aircraft Design and Engineering ∙ Beihang University ∙ 2010"
+  },
+  {
+    "objectID": "about.html#experience",
+    "href": "about.html#experience",
+    "title": "Huang Xie, PhD",
+    "section": "",
+    "text": "🎓 Postdoctoral Researcher ∙ University of Helsinki ∙ 2026 – Present\n🎓 Doctoral Researcher ∙ Tampere University ∙ 2021 – 2025\n🎓 Research Assistant ∙ Tampere University ∙ 2019 – 2020\n💻 Fullstack Software Engineer ∙ Bohai Commodity Exchange ∙ 2015 – 2018\n💻 Fullstack Software Engineer ∙ Industrial Software Research Institute ∙ 2014 – 2015\n💻 Software Engineer Intern ∙ Shanghai Advanced Research Institute ∙ 2013 – 2014\n💻 Software Engineer Intern ∙ CASIC Second Academy ∙ 2011 – 2012"
+  },
+  {
+    "objectID": "about.html#academic-services",
+    "href": "about.html#academic-services",
+    "title": "Huang Xie, PhD",
+    "section": "",
+    "text": "🎯 Conference Reviewer: ICASSP (2021–26), DCASE (2022–26), IJCNN (2025–27)\n📋 Journal Reviewer: TASLP\n🌐 Workshop Organizer: DCASE Challenge (2022–26)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "👋 Hi, I’m Huang Xie (谢晃)",
+    "section": "",
+    "text": "“Science is an error-correcting process.” — Charles S. Peirce\nI’m a postdoctoral researcher in the Multimodality Research Group at the University of Helsinki. I earned my PhD in 2026 from the Audio Research Group at Tampere University, where I also completed my MSc in Data Engineering and Machine Learning in 2020. I hold an MEng in Software Engineering from the University of Science and Technology of China (2014). Prior to my academic career, I spent over seven years in the industry as a full-stack software engineer. I’m passionate about bridging AI research and real-world applications."
+  },
+  {
+    "objectID": "index.html#news",
+    "href": "index.html#news",
+    "title": "👋 Hi, I’m Huang Xie (谢晃)",
+    "section": "📰 News",
+    "text": "📰 News\n\n[2026-07-04] 💻 Just released Sam3-FastAPI — A Dockerized web service that wraps Meta’s Segment Anything Model 3 (SAM3) in a simple FastAPI interface.\n[2026-07-01] 🏆 The DCASE2026 Challenge results are in! Congratulations to all participants! 🥳🎉🎉🎉\n[2026-03-16] 👥 Joined the Multimodality Research Group at University of Helsinki as a postdoctoral researcher.\n[2026-02-08] 🎓 Officially completed my PhD in the Audio Research Group at Tampere University."
+  },
+  {
+    "objectID": "posts/index.html",
+    "href": "posts/index.html",
+    "title": "🦉 Posts",
+    "section": "",
+    "text": "How to Install Label Studio for Local Development\n\n\n\nLabel Studio\n\n\n\n\n\n\n\n\n\nFeb 24, 2026\n\n\nXie, Huang\n\n\n\n\n\nNo matching items\n Back to top"
+  }
+]
