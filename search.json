@@ -21,67 +21,67 @@
     "text": "📄 Conference Papers\n\nDuygu Dogan, Huang Xie, Toni Heittola, Tuomas Virtanen (2025). On the Role of Training Class Distribution in Zero-Shot Audio Classification. Proceedings of the 10th Workshop on Detection and Classication of Acoustic Scenes and Events (DCASE 2025), pp. 205–209.\nDuygu Dogan, Huang Xie, Toni Heittola, Tuomas Virtanen (2024). Multi-Label Zero-Shot Audio Classification with Temporal Attention. Proceedings of the 18th International Workshop on Acoustic Signal Enhancement (IWAENC), pp. 250–254.\nHuang Xie, Khazar Khorrami, Okko Räsänen, Tuomas Virtanen (2024). Integrating Continuous and Binary Relevances in Audio-Text Relevance Learning. Proceedings of the 9th Workshop on Detection and Classification of Acoustic Scenes and Events (DCASE 2024), pp. 201–205.\nHuang Xie, Khazar Khorrami, Okko Räsänen, Tuomas Virtanen (2023). Crowdsourcing and Evaluating Text-Based Audio Retrieval Relevances. Proceedings of the 8th Workshop on Detection and Classification of Acoustic Scenes and Events (DCASE 2023), pp. 226–230.\nHuang Xie, Okko Räsänen, Tuomas Virtanen (2023). On Negative Sampling for Contrastive Audio-Text Retrieval. ICASSP 2023 - 2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), pp. 1–5. DOI: 10.1109/ICASSP49357.2023.10095319\nDuygu Dogan, Huang Xie, Toni Heittola, Tuomas Virtanen (2022). Zero-Shot Audio Classification using Image Embeddings. Proceedings of the 30th European Signal Processing Conference (EUSIPCO), pp. 1–5.\nHuang Xie, Samuel Lipping, Tuomas Virtanen (2022). Language-based Audio Retrieval Task in DCASE 2022 Challenge. Proceedings of the 7th Workshop on Detection and Classification of Acoustic Scenes and Events (DCASE 2022), pp. 216–220.\nHuang Xie, Okko Räsänen, Konstantinos Drossos, Tuomas Virtanen (2022). Unsupervised Audio-Caption Aligning Learns Correspondences Between Individual Sound Events and Textual Phrases. ICASSP 2022 - 2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), pp. 8867–8871. DOI: 10.1109/ICASSP43922.2022.9747336\nHuang Xie, Okko Räsänen, Tuomas Virtanen (2021). Zero-Shot Audio Classification with Factored Linear and Nonlinear Acoustic-Semantic Projections. ICASSP 2021 - 2021 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), pp. 326–330. DOI: 10.1109/ICASSP39728.2021.9414994\nHuang Xie, Tuomas Virtanen (2019). Zero-Shot Audio Classification Based On Class Label Embeddings. 2019 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA), pp. 264–267. DOI: 10.1109/WASPAA.2019.8937283"
   },
   {
-    "objectID": "posts/2026-02-24/index.html",
-    "href": "posts/2026-02-24/index.html",
-    "title": "How to Install Label Studio for Local Development",
+    "objectID": "posts/2026-07-06/index.html",
+    "href": "posts/2026-07-06/index.html",
+    "title": "Understanding Voice Activity Detection",
     "section": "",
-    "text": "This tutorial introduces how to install Label Studio for local development."
+    "text": "Blowfish: Understanding Voice Activity Detection\nVoice Activity Detection (VAD)—also known as speech activity detection, speech detection, or simply voice detection—is a class of signal-processing techniques that determine whether an audio signal contains human speech.\nAt its core, VAD answers one binary question: “Is someone speaking right now?”\nVAD systems analyze audio in real time, processing small chunks (frames) continuously to distinguish speech from silence or background noise. This technology powers everything from teleconferencing and voice assistants to speech coding and hearing aids."
   },
   {
-    "objectID": "posts/2026-02-24/index.html#about-label-studio",
-    "href": "posts/2026-02-24/index.html#about-label-studio",
-    "title": "How to Install Label Studio for Local Development",
-    "section": "About Label Studio",
-    "text": "About Label Studio\n\n\n\nPicture from https://github.com/HumanSignal/label-studio (licensed under the Apache License 2.0 © Heartex)\n\n\nLabel Studio is an open source data labeling tool that supports multiple projects, users, and data types in one platform. It supports labeling data types like audio, text, images, videos, and time series with a simple and straightforward UI and exporting to various model formats. It can be used to prepare raw data or improve existing training data to get more accurate ML models.1\n1 https://github.com/HumanSignal/label-studio."
+    "objectID": "posts/2026-07-06/index.html#why-vad-is-challenging",
+    "href": "posts/2026-07-06/index.html#why-vad-is-challenging",
+    "title": "Understanding Voice Activity Detection",
+    "section": "Why VAD is Challenging",
+    "text": "Why VAD is Challenging\nIn noise-free environments with clean recordings, VAD is trivial. But real-world conditions introduce significant complexity:\n\nBackground Noise: HVAC hum, traffic, music, office chatter, factory machinery\nVoice-Like Sounds: coughing, laughter, throat clearing, mouth noises\nRoom Acoustics: reverberation, echo, far-field microphone pickup\nAudio Degradation: compression artifacts, low sample rates, inexpensive microphones\nCompeting Speakers: background conversation (babble noise) is particularly difficult; even humans struggle to isolate a target speaker in these conditions\nComputational Constraints: many applications require lightweight models for low-latency processing\n\nA robust VAD system must accurately detect speech despite these challenges while remaining computationally efficient enough for production deployment."
   },
   {
-    "objectID": "posts/2026-02-24/index.html#prerequirements",
-    "href": "posts/2026-02-24/index.html#prerequirements",
-    "title": "How to Install Label Studio for Local Development",
-    "section": "Prerequirements",
-    "text": "Prerequirements\nBefore starting this tutorial, ensure that the following tools are installed on your local environment.\n\nPython 3.13 Download\nYarn 1.22.22 Download\nNodeJS v24.13.1 Download\nGit for Windows 2.53.0 Download"
+    "objectID": "posts/2026-07-06/index.html#the-vad-pipeline",
+    "href": "posts/2026-07-06/index.html#the-vad-pipeline",
+    "title": "Understanding Voice Activity Detection",
+    "section": "The VAD Pipeline",
+    "text": "The VAD Pipeline\nVAD transforms raw audio into clean speech/non-speech decisions through four stages:\n\n1. Frame Segmentation\nThe continuous audio stream is divided into short, overlapping frames (typically 10–30 ms). This framing is critical because speech characteristics are relatively stable over these short intervals.\nProduction standard: 25 ms frames with a 10 ms step (hop) between consecutive frames. A Hamming window is applied to each frame to taper edges and prevent spectral leakage that would otherwise corrupt frequency analysis.\n\n\n\n\n\n\nNote\n\n\n\n\nShorter frames → Faster response to speech onsets/offsets\nLonger frames → Better frequency resolution for classification\n\n\n\n\n\n2. Feature Extraction\nRaw waveform samples are converted into meaningful numerical features that highlight properties distinguishing speech from non-speech.\nFeature selection depends on the acoustic environment:\n\n\n\nTable 1: Suitable Features in Different Acoustic Environments\n\n\n\n\n\nEnvironment\nSuitable Features\n\n\n\n\nQuiet office\nShort-time energy, zero-crossing rate\n\n\nModerate noise\nSpectral centroid, spectral flux, harmonicity\n\n\nHeavy noise\nMFCCs, mel-spectrograms, pitch correlation\n\n\nEcho-prone spaces\nAdaptive filtering + non-linear processing\n\n\n\n\n\n\n\n\n3. Classification\nThe extracted features are fed into a classifier that outputs a speech probability for each frame.\nThree tiers of classification approaches:\n\nThreshold-based: Compare frame energy to an estimated noise floor; classify as speech if above a fixed or adaptive threshold. Simplest approach; fails in dynamic noise.\nStatistical models: Gaussian Mixture Models (GMMs) or Hidden Markov Models (HMMs) learn separate probability distributions for speech and noise, handling moderate noise variability.\nNeural networks: Deep learning models learn complex speech–noise patterns directly from data, excelling in the noisiest environments (trains, warehouses, open offices).\n\n\n\n4. Post-Processing\nRaw frame-by-frame decisions are often noisy, with rapid flickering between speech and non-speech. Post-processing smooths these decisions for stable, usable output.\nKey techniques:\n\nHangover schemes: Extend the “speech” label for a short duration after the classifier detects silence, preventing mid-syllable chopping during brief pauses.\nMedian filters: Remove isolated single-frame glitches that cause false triggers.\nHysteresis: Use asymmetric thresholds: require higher confidence to start detecting speech but lower confidence to stop, mimicking the behavior of a Schmitt trigger to eliminate rapid toggling.\n\n\n\n\n\n\n\nNote\n\n\n\nIn many production systems, post-processing contributes more to perceived VAD quality than the classifier itself."
   },
   {
-    "objectID": "posts/2026-02-24/index.html#get-the-source",
-    "href": "posts/2026-02-24/index.html#get-the-source",
-    "title": "How to Install Label Studio for Local Development",
-    "section": "📥 1. Get the Source",
-    "text": "📥 1. Get the Source\nThe first step is to download the latest Label Studio from its GitHub repository.\n# Clone the repository (use `--depth 1` to accelerate downloading)\ngit clone https://github.com/HumanSignal/label-studio.git --depth 1\n\n# Switch to the source directory (the root directory)\ncd label-studio"
+    "objectID": "posts/2026-07-06/index.html#traditional-vad-vs.-deep-learning-vad",
+    "href": "posts/2026-07-06/index.html#traditional-vad-vs.-deep-learning-vad",
+    "title": "Understanding Voice Activity Detection",
+    "section": "Traditional VAD vs. Deep Learning VAD",
+    "text": "Traditional VAD vs. Deep Learning VAD\n\nTraditional (Signal Processing) VAD\nTraditional systems rely on hand-crafted acoustic features designed by domain experts:\n\n\n\nTable 2: Hand-crafted Acoustic Features\n\n\n\n\n\n\n\n\n\nFeature\nPrinciple\n\n\n\n\nEnergy levels\nSpeech is typically louder than background silence\n\n\nZero-crossing rate\nVoiced speech has predictable oscillation patterns\n\n\nSpectral features\nHuman speech occupies specific frequency bands (300–3400 Hz)\n\n\nPitch detection\nSpeech exhibits harmonic structure; most noise does not\n\n\nSignal-to-noise ratio (SNR)\nSpeech has higher energy relative to the noise floor\n\n\n\n\n\n\nCharacteristics:\n\nUse statistical models (GMMs, HMMs) or fixed/adaptive thresholds\nFollow explicit, interpretable rules\nFast and lightweight\nStruggle with voice-like noise and dynamic acoustic conditions\nPerformance bounded by engineer-designed features\n\n\n\nDeep Learning VAD\nModern VAD systems use neural networks that learn speech–noise distinctions directly from data, eliminating manual feature engineering.\nHow they work:\n\nAccept raw audio or spectrograms as input\nAutomatically learn optimal feature representations from thousands of hours of labeled audio\nCommonly use architectures like CNNs (capturing local time–frequency patterns), RNNs (modeling temporal dependencies), or hybrid CNN–RNN designs\n\nCharacteristics:\n\nRobust to complex noise, reverberation, and accent variability\nSignificantly outperform traditional methods in adverse conditions\nMore computationally demanding (though optimized models now run on-device)\nMay require representative training data for target deployment environments\n\n\n\n\n\n\n\nNote\n\n\n\nMFCCs and Spectrograms: While deep learning VAD learns features automatically, mel-frequency cepstral coefficients (MFCCs) and mel-spectrograms are often used as input representations because they approximate human auditory perception and provide a compact, informative format for the network."
   },
   {
-    "objectID": "posts/2026-02-24/index.html#set-up-python-environment",
-    "href": "posts/2026-02-24/index.html#set-up-python-environment",
-    "title": "How to Install Label Studio for Local Development",
-    "section": "🐍 2. Set Up Python Environment",
-    "text": "🐍 2. Set Up Python Environment\n# Install poetry (for Python package dependency management)\npip install poetry\n\n# Check poetry installation\npoetry env info\n\n# Set up poetry virtual environment\npoetry config virtualenvs.in-project true\n\n# Install all Python package dependencies\npoetry install"
+    "objectID": "posts/2026-07-06/index.html#evaluating-vad-performance",
+    "href": "posts/2026-07-06/index.html#evaluating-vad-performance",
+    "title": "Understanding Voice Activity Detection",
+    "section": "Evaluating VAD Performance",
+    "text": "Evaluating VAD Performance\nVAD evaluation centers on how accurately the system labels speech and non-speech frames.\n\nCore Metrics\n\nTrue Positive Rate (TPR, Recall, Detection Rate): Percentage of actual speech frames correctly identified as speech. Ideally: 100% (never misses speech).\nFalse Positive Rate (FPR, False Alarm Rate): Percentage of non-speech frames incorrectly labeled as speech. Ideally: 0% (never triggers on silence or noise).\n\n\n\nThe Sensitivity–Specificity Trade-Off\nTPR and FPR are inversely related and controlled by the decision threshold:\n\n\n\nTable 3: TPR and FPR\n\n\n\n\n\n\n\n\n\n\n\nThreshold Change\nEffect on TPR\nEffect on FPR\nResult\n\n\n\n\nLower threshold\n⬆️\n⬆️\nMore sensitive, more false alarms\n\n\nHigher threshold\n⬇️\n⬇️\nLess sensitive, fewer false alarms\n\n\n\n\n\n\nThe optimal threshold depends on the application: voice assistants prioritize high TPR (don’t miss commands), while speech coders prioritize low FPR (don’t waste bandwidth on silence).\n\n\nROC Curves\nReceiver Operating Characteristic (ROC) curves plot TPR against FPR across all possible thresholds, providing a comprehensive view of VAD performance independent of any single threshold choice. The area under the ROC curve (AUC) serves as a single-number summary of detection quality."
   },
   {
-    "objectID": "posts/2026-02-24/index.html#create-database",
-    "href": "posts/2026-02-24/index.html#create-database",
-    "title": "How to Install Label Studio for Local Development",
-    "section": "🗄️ 3. Create Database",
-    "text": "🗄️ 3. Create Database\n# Run database migrations\npoetry run python label_studio/manage.py migrate\n\n# Collect static resources (for the frontend)\npoetry run python label_studio/manage.py collectstatic --noinput"
+    "objectID": "posts/2026-07-06/index.html#applications-and-role-in-speech-pipelines",
+    "href": "posts/2026-07-06/index.html#applications-and-role-in-speech-pipelines",
+    "title": "Understanding Voice Activity Detection",
+    "section": "Applications and Role in Speech Pipelines",
+    "text": "Applications and Role in Speech Pipelines\nVAD is rarely the end goal—it serves as a critical pre-processing step that enables efficient downstream processing.\n\nWhy Use VAD?\n\nComputational savings: Restrict expensive algorithms (ASR, diarization) to speech segments only.\nBandwidth reduction: In speech coding, suppress transmission during silence (discontinuous transmission).\nNoise estimation: In speech enhancement, characterize noise from non-speech regions to improve denoising of speech regions.\n\n\n\nKey Applications\n\n\n\nTable 4: Key Applications of VAD\n\n\n\n\n\n\n\n\n\nDomain\nVAD’s Role\n\n\n\n\nSpeech recognition (ASR)\nFeed only speech frames to the recognizer, reducing CPU/GPU load\n\n\nSpeech enhancement\nEstimate noise profile from non-speech segments; apply denoising to speech segments\n\n\nSpeaker diarization\nSegment audio into speaker turns by identifying speech regions first\n\n\nSpeech coding\nEnable discontinuous transmission (DTX) to save bandwidth during silence\n\n\nVoice assistants\nTrigger downstream processing only when the user is speaking\n\n\nHearing aids\nActivate noise reduction and amplification selectively\n\n\n\n\n\n\nVAD’s combination of low complexity and high impact makes it a universal first stage in speech processing systems."
   },
   {
-    "objectID": "posts/2026-02-24/index.html#build-frontend-resources-important",
-    "href": "posts/2026-02-24/index.html#build-frontend-resources-important",
-    "title": "How to Install Label Studio for Local Development",
-    "section": "⚛️ 4. Build Frontend Resources (Important!)",
-    "text": "⚛️ 4. Build Frontend Resources (Important!)\n# Switch to the frontend directory\ncd web\n\n# Configure yarn with Git Bash (for Windows)\nyarn config set script-shell \"~/Git/bin/bash.exe\"\n\n# Install dependencies\nyarn install --frozen-lockfile\n\n# Build frontend resources\nyarn build\n\n# Switch to the root directory\ncd ..\nAfter the build is complete, the frontend files will be generated in the web/dist/apps/labelstudio directory, which is the path that Django looks for when collecting static files."
+    "objectID": "posts/2026-07-06/index.html#summary",
+    "href": "posts/2026-07-06/index.html#summary",
+    "title": "Understanding Voice Activity Detection",
+    "section": "Summary",
+    "text": "Summary\nVoice Activity Detection transforms the continuous problem of “when is someone speaking?” into a binary classification task operating on short audio frames. While conceptually simple, robust VAD in real-world conditions requires careful engineering:\n\nA well-designed pipeline (segmentation → features → classification → post-processing)\nAppropriate feature selection for the target acoustic environment\nSmart post-processing to stabilize decisions\nModern deep learning approaches for challenging noise conditions\n\nThe right VAD solution balances accuracy, latency, and computational cost for the specific application at hand."
   },
   {
-    "objectID": "posts/2026-02-24/index.html#collect-static-resources-again",
-    "href": "posts/2026-02-24/index.html#collect-static-resources-again",
-    "title": "How to Install Label Studio for Local Development",
-    "section": "🔄 5. Collect Static Resources (Again!)",
-    "text": "🔄 5. Collect Static Resources (Again!)\n# Collect static resources\npoetry run python label_studio/manage.py collectstatic --noinput"
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "👋 Hi, I’m Huang Xie (谢晃)",
+    "section": "",
+    "text": "Humans are just humans; Doing something real in the world.\nI’m a postdoctoral researcher in the Multimodality Research Group at the University of Helsinki. I earned my PhD in 2026 from the Audio Research Group at Tampere University, where I also completed my MSc in Data Engineering and Machine Learning in 2020. I hold an MEng in Software Engineering from the University of Science and Technology of China (2014). Prior to my academic career, I spent over seven years in the industry as a full-stack software engineer. I’m passionate about bridging AI research and real-world applications."
   },
   {
-    "objectID": "posts/2026-02-24/index.html#start-dev-server",
-    "href": "posts/2026-02-24/index.html#start-dev-server",
-    "title": "How to Install Label Studio for Local Development",
-    "section": "🚀 6. Start Dev Server",
-    "text": "🚀 6. Start Dev Server\n# Run dev server\npoetry run python label_studio/manage.py runserver\nNow, you can access the Label Studio web interface by visiting http://localhost:8080."
+    "objectID": "index.html#news",
+    "href": "index.html#news",
+    "title": "👋 Hi, I’m Huang Xie (谢晃)",
+    "section": "📰 News",
+    "text": "📰 News\n\n[2026-07-04] 💻 Just released Sam3-FastAPI — A Dockerized web service that wraps Meta’s Segment Anything Model 3 (SAM3) in a simple FastAPI interface.\n[2026-07-01] 🏆 The DCASE2026 Challenge results are in! Congratulations to all participants! 🥳🎉🎉🎉\n[2026-03-16] 👥 Joined the Multimodality Research Group at University of Helsinki as a postdoctoral researcher.\n[2026-02-08] 🎓 Officially completed my PhD in the Audio Research Group at Tampere University."
   },
   {
     "objectID": "about.html",
@@ -119,24 +119,73 @@
     "text": "🎯 Conference Reviewer: ICASSP (2021–26), DCASE (2022–26), IJCNN (2025–27)\n📋 Journal Reviewer: TASLP\n🌐 Workshop Organizer: DCASE Challenge (2022–26)"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "👋 Hi, I’m Huang Xie (谢晃)",
+    "objectID": "posts/2026-02-24/index.html",
+    "href": "posts/2026-02-24/index.html",
+    "title": "How to Install Label Studio for Local Development",
     "section": "",
-    "text": "“Science is an error-correcting process.” — Charles S. Peirce\nI’m a postdoctoral researcher in the Multimodality Research Group at the University of Helsinki. I earned my PhD in 2026 from the Audio Research Group at Tampere University, where I also completed my MSc in Data Engineering and Machine Learning in 2020. I hold an MEng in Software Engineering from the University of Science and Technology of China (2014). Prior to my academic career, I spent over seven years in the industry as a full-stack software engineer. I’m passionate about bridging AI research and real-world applications."
+    "text": "This tutorial walks you through installing Label Studio in a local development environment."
   },
   {
-    "objectID": "index.html#news",
-    "href": "index.html#news",
-    "title": "👋 Hi, I’m Huang Xie (谢晃)",
-    "section": "📰 News",
-    "text": "📰 News\n\n[2026-07-04] 💻 Just released Sam3-FastAPI — A Dockerized web service that wraps Meta’s Segment Anything Model 3 (SAM3) in a simple FastAPI interface.\n[2026-07-01] 🏆 The DCASE2026 Challenge results are in! Congratulations to all participants! 🥳🎉🎉🎉\n[2026-03-16] 👥 Joined the Multimodality Research Group at University of Helsinki as a postdoctoral researcher.\n[2026-02-08] 🎓 Officially completed my PhD in the Audio Research Group at Tampere University."
+    "objectID": "posts/2026-02-24/index.html#about-label-studio",
+    "href": "posts/2026-02-24/index.html#about-label-studio",
+    "title": "How to Install Label Studio for Local Development",
+    "section": "About Label Studio",
+    "text": "About Label Studio\n\n\n\nPicture from https://github.com/HumanSignal/label-studio (licensed under the Apache License 2.0 © Heartex)\n\n\nLabel Studio is an open-source data labeling platform that supports multiple projects, users, and data types. Its simple, straightforward UI lets you label audio, text, images, videos, and time-series data and export annotations to a variety of model formats. Use it to prepare raw data or refine existing training data and build more accurate ML models.1\n1 https://github.com/HumanSignal/label-studio."
+  },
+  {
+    "objectID": "posts/2026-02-24/index.html#prerequisites",
+    "href": "posts/2026-02-24/index.html#prerequisites",
+    "title": "How to Install Label Studio for Local Development",
+    "section": "Prerequisites",
+    "text": "Prerequisites\nBefore you begin, make sure the following tools are installed in your local environment:\n\nPython 3.13 Download\nYarn 1.22.22 Download\nNode.js v24.13.1 Download\nGit for Windows 2.53.0 Download"
+  },
+  {
+    "objectID": "posts/2026-02-24/index.html#get-the-source",
+    "href": "posts/2026-02-24/index.html#get-the-source",
+    "title": "How to Install Label Studio for Local Development",
+    "section": "📥 1. Get the Source",
+    "text": "📥 1. Get the Source\nStart by cloning the latest Label Studio source from its GitHub repository.\n# Clone the repository (use --depth 1 for a faster, shallow clone)\ngit clone https://github.com/HumanSignal/label-studio.git --depth 1\n\n# Move into the project root\ncd label-studio"
+  },
+  {
+    "objectID": "posts/2026-02-24/index.html#set-up-the-python-environment",
+    "href": "posts/2026-02-24/index.html#set-up-the-python-environment",
+    "title": "How to Install Label Studio for Local Development",
+    "section": "🐍 2. Set Up the Python Environment",
+    "text": "🐍 2. Set Up the Python Environment\n# Install Poetry for Python dependency management\npip install poetry\n\n# Verify Poetry is working\npoetry env info\n\n# Configure Poetry to create the virtual environment inside the project folder\npoetry config virtualenvs.in-project true\n\n# Install all Python dependencies\npoetry install"
+  },
+  {
+    "objectID": "posts/2026-02-24/index.html#create-the-database",
+    "href": "posts/2026-02-24/index.html#create-the-database",
+    "title": "How to Install Label Studio for Local Development",
+    "section": "🗄️ 3. Create the Database",
+    "text": "🗄️ 3. Create the Database\n# Run database migrations\npoetry run python label_studio/manage.py migrate\n\n# Collect static files (needed by the frontend)\npoetry run python label_studio/manage.py collectstatic --noinput"
+  },
+  {
+    "objectID": "posts/2026-02-24/index.html#build-frontend-resources-important",
+    "href": "posts/2026-02-24/index.html#build-frontend-resources-important",
+    "title": "How to Install Label Studio for Local Development",
+    "section": "⚛️ 4. Build Frontend Resources (Important!)",
+    "text": "⚛️ 4. Build Frontend Resources (Important!)\n# Navigate to the frontend directory\ncd web\n\n# (Windows only) Point Yarn to Git Bash for script execution\nyarn config set script-shell \"~/Git/bin/bash.exe\"\n\n# Install frontend dependencies\nyarn install --frozen-lockfile\n\n# Build the frontend assets\nyarn build\n\n# Return to the project root\ncd ..\nOnce the build completes, the compiled frontend files are placed in web/dist/apps/labelstudio. This is the path Django reads from when collecting static files."
+  },
+  {
+    "objectID": "posts/2026-02-24/index.html#collect-static-resources-again",
+    "href": "posts/2026-02-24/index.html#collect-static-resources-again",
+    "title": "How to Install Label Studio for Local Development",
+    "section": "🔄 5. Collect Static Resources (Again!)",
+    "text": "🔄 5. Collect Static Resources (Again!)\n# Re-collect static files to pick up the freshly built frontend assets\npoetry run python label_studio/manage.py collectstatic --noinput"
+  },
+  {
+    "objectID": "posts/2026-02-24/index.html#start-the-dev-server",
+    "href": "posts/2026-02-24/index.html#start-the-dev-server",
+    "title": "How to Install Label Studio for Local Development",
+    "section": "🚀 6. Start the Dev Server",
+    "text": "🚀 6. Start the Dev Server\n# Launch the development server\npoetry run python label_studio/manage.py runserver\nYou can now access the Label Studio web interface at http://localhost:8080."
   },
   {
     "objectID": "posts/index.html",
     "href": "posts/index.html",
     "title": "🦉 Posts",
     "section": "",
-    "text": "How to Install Label Studio for Local Development\n\n\n\nLabel Studio\n\n\n\n\n\n\n\n\n\nFeb 24, 2026\n\n\nXie, Huang\n\n\n\n\n\nNo matching items\n Back to top"
+    "text": "Understanding Voice Activity Detection\n\n\n\nVoice Activity Detection\n\n\n\n\n\n\n\n\n\nJul 6, 2026\n\n\nXie, Huang\n\n\n\n\n\n\n\n\n\n\n\n\nHow to Install Label Studio for Local Development\n\n\n\nLabel Studio\n\n\n\n\n\n\n\n\n\nFeb 24, 2026\n\n\nXie, Huang\n\n\n\n\n\nNo matching items\n Back to top"
   }
 ]

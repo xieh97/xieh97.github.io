@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Xie, Huang">
-<meta name="dcterms.date" content="2026-02-24">
+<meta name="dcterms.date" content="2026-07-06">
 
-<title>How to Install Label Studio for Local Development – 🪶 Huang Xie’s Personal Website</title>
+<title>Understanding Voice Activity Detection – 🪶 Huang Xie’s Personal Website</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -24,41 +24,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -167,25 +132,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#about-label-studio" id="toc-about-label-studio" class="nav-link active" data-scroll-target="#about-label-studio">About Label Studio</a></li>
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
-  <li><a href="#get-the-source" id="toc-get-the-source" class="nav-link" data-scroll-target="#get-the-source">📥 1. Get the Source</a></li>
-  <li><a href="#set-up-the-python-environment" id="toc-set-up-the-python-environment" class="nav-link" data-scroll-target="#set-up-the-python-environment">🐍 2. Set Up the Python Environment</a></li>
-  <li><a href="#create-the-database" id="toc-create-the-database" class="nav-link" data-scroll-target="#create-the-database">🗄️ 3. Create the Database</a></li>
-  <li><a href="#build-frontend-resources-important" id="toc-build-frontend-resources-important" class="nav-link" data-scroll-target="#build-frontend-resources-important">⚛️ 4. Build Frontend Resources (Important!)</a></li>
-  <li><a href="#collect-static-resources-again" id="toc-collect-static-resources-again" class="nav-link" data-scroll-target="#collect-static-resources-again">🔄 5. Collect Static Resources (Again!)</a></li>
-  <li><a href="#start-the-dev-server" id="toc-start-the-dev-server" class="nav-link" data-scroll-target="#start-the-dev-server">🚀 6. Start the Dev Server</a></li>
+  <li><a href="#why-vad-is-challenging" id="toc-why-vad-is-challenging" class="nav-link active" data-scroll-target="#why-vad-is-challenging">Why VAD is Challenging</a></li>
+  <li><a href="#the-vad-pipeline" id="toc-the-vad-pipeline" class="nav-link" data-scroll-target="#the-vad-pipeline">The VAD Pipeline</a>
+  <ul class="collapse">
+  <li><a href="#frame-segmentation" id="toc-frame-segmentation" class="nav-link" data-scroll-target="#frame-segmentation">1. Frame Segmentation</a></li>
+  <li><a href="#feature-extraction" id="toc-feature-extraction" class="nav-link" data-scroll-target="#feature-extraction">2. Feature Extraction</a></li>
+  <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification">3. Classification</a></li>
+  <li><a href="#post-processing" id="toc-post-processing" class="nav-link" data-scroll-target="#post-processing">4. Post-Processing</a></li>
+  </ul></li>
+  <li><a href="#traditional-vad-vs.-deep-learning-vad" id="toc-traditional-vad-vs.-deep-learning-vad" class="nav-link" data-scroll-target="#traditional-vad-vs.-deep-learning-vad">Traditional VAD vs.&nbsp;Deep Learning VAD</a>
+  <ul class="collapse">
+  <li><a href="#traditional-signal-processing-vad" id="toc-traditional-signal-processing-vad" class="nav-link" data-scroll-target="#traditional-signal-processing-vad">Traditional (Signal Processing) VAD</a></li>
+  <li><a href="#deep-learning-vad" id="toc-deep-learning-vad" class="nav-link" data-scroll-target="#deep-learning-vad">Deep Learning VAD</a></li>
+  </ul></li>
+  <li><a href="#evaluating-vad-performance" id="toc-evaluating-vad-performance" class="nav-link" data-scroll-target="#evaluating-vad-performance">Evaluating VAD Performance</a>
+  <ul class="collapse">
+  <li><a href="#core-metrics" id="toc-core-metrics" class="nav-link" data-scroll-target="#core-metrics">Core Metrics</a></li>
+  <li><a href="#the-sensitivityspecificity-trade-off" id="toc-the-sensitivityspecificity-trade-off" class="nav-link" data-scroll-target="#the-sensitivityspecificity-trade-off">The Sensitivity–Specificity Trade-Off</a></li>
+  <li><a href="#roc-curves" id="toc-roc-curves" class="nav-link" data-scroll-target="#roc-curves">ROC Curves</a></li>
+  </ul></li>
+  <li><a href="#applications-and-role-in-speech-pipelines" id="toc-applications-and-role-in-speech-pipelines" class="nav-link" data-scroll-target="#applications-and-role-in-speech-pipelines">Applications and Role in Speech Pipelines</a>
+  <ul class="collapse">
+  <li><a href="#why-use-vad" id="toc-why-use-vad" class="nav-link" data-scroll-target="#why-use-vad">Why Use VAD?</a></li>
+  <li><a href="#key-applications" id="toc-key-applications" class="nav-link" data-scroll-target="#key-applications">Key Applications</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full column-page-left" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">How to Install Label Studio for Local Development</h1>
+<h1 class="title">Understanding Voice Activity Detection</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Label Studio</div>
+    <div class="quarto-category">Voice Activity Detection</div>
   </div>
   </div>
 
@@ -203,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 24, 2026</p>
+      <p class="date">July 6, 2026</p>
     </div>
   </div>
   
@@ -215,90 +197,349 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This tutorial walks you through installing Label Studio in a local development environment.</p>
-<section id="about-label-studio" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="about-label-studio">About Label Studio</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="label-studio.png" class="img-fluid figure-img"></p>
-<figcaption>Picture from https://github.com/HumanSignal/label-studio (licensed under the Apache License 2.0 © Heartex)</figcaption>
+<p><img src="../../resources/images/blowfish.png" class="img-fluid figure-img" style="width:25.0%"></p>
+<figcaption>Blowfish: Understanding Voice Activity Detection</figcaption>
 </figure>
 </div>
-<p>Label Studio is an open-source data labeling platform that supports multiple projects, users, and data types. Its simple, straightforward UI lets you label audio, text, images, videos, and time-series data and export annotations to a variety of model formats. Use it to prepare raw data or refine existing training data and build more accurate ML models.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;https://github.com/HumanSignal/label-studio.</p></div></div></section>
-<section id="prerequisites" class="level2">
-<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
-<p>Before you begin, make sure the following tools are installed in your local environment:</p>
+<p>Voice Activity Detection (VAD)—also known as speech activity detection, speech detection, or simply voice detection—is a class of signal-processing techniques that determine whether an audio signal contains human speech.</p>
+<p>At its core, VAD answers one binary question: “Is someone speaking right now?”</p>
+<p>VAD systems analyze audio in real time, processing small chunks (frames) continuously to distinguish speech from silence or background noise. This technology powers everything from teleconferencing and voice assistants to speech coding and hearing aids.</p>
+<section id="why-vad-is-challenging" class="level2">
+<h2 class="anchored" data-anchor-id="why-vad-is-challenging">Why VAD is Challenging</h2>
+<p>In noise-free environments with clean recordings, VAD is trivial. But real-world conditions introduce significant complexity:</p>
 <ul>
-<li>Python 3.13 <a href="https://www.python.org/downloads">Download</a></li>
-<li>Yarn 1.22.22 <a href="https://github.com/yarnpkg/yarn">Download</a></li>
-<li>Node.js v24.13.1 <a href="https://nodejs.org/en/download">Download</a></li>
-<li>Git for Windows 2.53.0 <a href="https://git-scm.com/install/windows">Download</a></li>
+<li>Background Noise: HVAC hum, traffic, music, office chatter, factory machinery</li>
+<li>Voice-Like Sounds: coughing, laughter, throat clearing, mouth noises</li>
+<li>Room Acoustics: reverberation, echo, far-field microphone pickup</li>
+<li>Audio Degradation: compression artifacts, low sample rates, inexpensive microphones</li>
+<li>Competing Speakers: background conversation (babble noise) is particularly difficult; even humans struggle to isolate a target speaker in these conditions</li>
+<li>Computational Constraints: many applications require lightweight models for low-latency processing</li>
+</ul>
+<p>A robust VAD system must accurately detect speech despite these challenges while remaining computationally efficient enough for production deployment.</p>
+</section>
+<section id="the-vad-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="the-vad-pipeline">The VAD Pipeline</h2>
+<p>VAD transforms raw audio into clean speech/non-speech decisions through four stages:</p>
+<section id="frame-segmentation" class="level3">
+<h3 class="anchored" data-anchor-id="frame-segmentation">1. Frame Segmentation</h3>
+<p>The continuous audio stream is divided into short, overlapping frames (typically 10–30 ms). This framing is critical because speech characteristics are relatively stable over these short intervals.</p>
+<p>Production standard: 25 ms frames with a 10 ms step (hop) between consecutive frames. A Hamming window is applied to each frame to taper edges and prevent spectral leakage that would otherwise corrupt frequency analysis.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Shorter frames → Faster response to speech onsets/offsets</li>
+<li>Longer frames → Better frequency resolution for classification</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="feature-extraction" class="level3">
+<h3 class="anchored" data-anchor-id="feature-extraction">2. Feature Extraction</h3>
+<p>Raw waveform samples are converted into meaningful numerical features that highlight properties distinguishing speech from non-speech.</p>
+<p>Feature selection depends on the acoustic environment:</p>
+<div id="tbl-features" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Suitable Features in Different Acoustic Environments
+</figcaption>
+<div aria-describedby="tbl-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Environment</th>
+<th style="text-align: left;">Suitable Features</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Quiet office</td>
+<td style="text-align: left;">Short-time energy, zero-crossing rate</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Moderate noise</td>
+<td style="text-align: left;">Spectral centroid, spectral flux, harmonicity</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Heavy noise</td>
+<td style="text-align: left;">MFCCs, mel-spectrograms, pitch correlation</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Echo-prone spaces</td>
+<td style="text-align: left;">Adaptive filtering + non-linear processing</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="classification" class="level3">
+<h3 class="anchored" data-anchor-id="classification">3. Classification</h3>
+<p>The extracted features are fed into a classifier that outputs a speech probability for each frame.</p>
+<p>Three tiers of classification approaches:</p>
+<ul>
+<li>Threshold-based: Compare frame energy to an estimated noise floor; classify as speech if above a fixed or adaptive threshold. Simplest approach; fails in dynamic noise.</li>
+<li>Statistical models: Gaussian Mixture Models (GMMs) or Hidden Markov Models (HMMs) learn separate probability distributions for speech and noise, handling moderate noise variability.</li>
+<li>Neural networks: Deep learning models learn complex speech–noise patterns directly from data, excelling in the noisiest environments (trains, warehouses, open offices).</li>
 </ul>
 </section>
-<section id="get-the-source" class="level2">
-<h2 class="anchored" data-anchor-id="get-the-source">📥 1. Get the Source</h2>
-<p>Start by cloning the latest Label Studio source from its GitHub repository.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clone the repository (use --depth 1 for a faster, shallow clone)</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/HumanSignal/label-studio.git <span class="at">--depth</span> 1</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Move into the project root</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> label-studio</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="post-processing" class="level3">
+<h3 class="anchored" data-anchor-id="post-processing">4. Post-Processing</h3>
+<p>Raw frame-by-frame decisions are often noisy, with rapid flickering between speech and non-speech. Post-processing smooths these decisions for stable, usable output.</p>
+<p>Key techniques:</p>
+<ul>
+<li>Hangover schemes: Extend the “speech” label for a short duration after the classifier detects silence, preventing mid-syllable chopping during brief pauses.</li>
+<li>Median filters: Remove isolated single-frame glitches that cause false triggers.</li>
+<li>Hysteresis: Use asymmetric thresholds: require higher confidence to <em>start</em> detecting speech but lower confidence to <em>stop</em>, mimicking the behavior of a Schmitt trigger to eliminate rapid toggling.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In many production systems, post-processing contributes more to perceived VAD quality than the classifier itself.</p>
+</div>
+</div>
 </section>
-<section id="set-up-the-python-environment" class="level2">
-<h2 class="anchored" data-anchor-id="set-up-the-python-environment">🐍 2. Set Up the Python Environment</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Poetry for Python dependency management</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install poetry</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify Poetry is working</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> env info</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Configure Poetry to create the virtual environment inside the project folder</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> config virtualenvs.in-project true</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Install all Python dependencies</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> install</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="create-the-database" class="level2">
-<h2 class="anchored" data-anchor-id="create-the-database">🗄️ 3. Create the Database</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run database migrations</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> run python label_studio/manage.py migrate</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Collect static files (needed by the frontend)</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> run python label_studio/manage.py collectstatic <span class="at">--noinput</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="traditional-vad-vs.-deep-learning-vad" class="level2">
+<h2 class="anchored" data-anchor-id="traditional-vad-vs.-deep-learning-vad">Traditional VAD vs.&nbsp;Deep Learning VAD</h2>
+<section id="traditional-signal-processing-vad" class="level3">
+<h3 class="anchored" data-anchor-id="traditional-signal-processing-vad">Traditional (Signal Processing) VAD</h3>
+<p>Traditional systems rely on hand-crafted acoustic features designed by domain experts:</p>
+<div id="tbl-hand-crafted-features" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-hand-crafted-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Hand-crafted Acoustic Features
+</figcaption>
+<div aria-describedby="tbl-hand-crafted-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 68%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Feature</th>
+<th style="text-align: left;">Principle</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Energy levels</td>
+<td style="text-align: left;">Speech is typically louder than background silence</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Zero-crossing rate</td>
+<td style="text-align: left;">Voiced speech has predictable oscillation patterns</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Spectral features</td>
+<td style="text-align: left;">Human speech occupies specific frequency bands (300–3400 Hz)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pitch detection</td>
+<td style="text-align: left;">Speech exhibits harmonic structure; most noise does not</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Signal-to-noise ratio (SNR)</td>
+<td style="text-align: left;">Speech has higher energy relative to the noise floor</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Characteristics:</p>
+<ul>
+<li>Use statistical models (GMMs, HMMs) or fixed/adaptive thresholds</li>
+<li>Follow explicit, interpretable rules</li>
+<li>Fast and lightweight</li>
+<li>Struggle with voice-like noise and dynamic acoustic conditions</li>
+<li>Performance bounded by engineer-designed features</li>
+</ul>
 </section>
-<section id="build-frontend-resources-important" class="level2">
-<h2 class="anchored" data-anchor-id="build-frontend-resources-important">⚛️ 4. Build Frontend Resources (Important!)</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Navigate to the frontend directory</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> web</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># (Windows only) Point Yarn to Git Bash for script execution</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">yarn</span> config set script-shell <span class="st">"~/Git/bin/bash.exe"</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Install frontend dependencies</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">yarn</span> install <span class="at">--frozen-lockfile</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the frontend assets</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ex">yarn</span> build</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Return to the project root</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Once the build completes, the compiled frontend files are placed in <code>web/dist/apps/labelstudio</code>. This is the path Django reads from when collecting static files.</p>
+<section id="deep-learning-vad" class="level3">
+<h3 class="anchored" data-anchor-id="deep-learning-vad">Deep Learning VAD</h3>
+<p>Modern VAD systems use neural networks that learn speech–noise distinctions directly from data, eliminating manual feature engineering.</p>
+<p>How they work:</p>
+<ul>
+<li>Accept raw audio or spectrograms as input</li>
+<li>Automatically learn optimal feature representations from thousands of hours of labeled audio</li>
+<li>Commonly use architectures like CNNs (capturing local time–frequency patterns), RNNs (modeling temporal dependencies), or hybrid CNN–RNN designs</li>
+</ul>
+<p>Characteristics:</p>
+<ul>
+<li>Robust to complex noise, reverberation, and accent variability</li>
+<li>Significantly outperform traditional methods in adverse conditions</li>
+<li>More computationally demanding (though optimized models now run on-device)</li>
+<li>May require representative training data for target deployment environments</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>MFCCs and Spectrograms: While deep learning VAD learns features automatically, mel-frequency cepstral coefficients (MFCCs) and mel-spectrograms are often used as input representations because they approximate human auditory perception and provide a compact, informative format for the network.</p>
+</div>
+</div>
 </section>
-<section id="collect-static-resources-again" class="level2">
-<h2 class="anchored" data-anchor-id="collect-static-resources-again">🔄 5. Collect Static Resources (Again!)</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Re-collect static files to pick up the freshly built frontend assets</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> run python label_studio/manage.py collectstatic <span class="at">--noinput</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="start-the-dev-server" class="level2">
-<h2 class="anchored" data-anchor-id="start-the-dev-server">🚀 6. Start the Dev Server</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Launch the development server</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">poetry</span> run python label_studio/manage.py runserver</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You can now access the Label Studio web interface at <code>http://localhost:8080</code>.</p>
+<section id="evaluating-vad-performance" class="level2">
+<h2 class="anchored" data-anchor-id="evaluating-vad-performance">Evaluating VAD Performance</h2>
+<p>VAD evaluation centers on how accurately the system labels speech and non-speech frames.</p>
+<section id="core-metrics" class="level3">
+<h3 class="anchored" data-anchor-id="core-metrics">Core Metrics</h3>
+<ul>
+<li>True Positive Rate (TPR, Recall, Detection Rate): Percentage of actual speech frames correctly identified as speech. <em>Ideally:</em> 100% (never misses speech).</li>
+<li>False Positive Rate (FPR, False Alarm Rate): Percentage of non-speech frames incorrectly labeled as speech. <em>Ideally:</em> 0% (never triggers on silence or noise).</li>
+</ul>
+</section>
+<section id="the-sensitivityspecificity-trade-off" class="level3">
+<h3 class="anchored" data-anchor-id="the-sensitivityspecificity-trade-off">The Sensitivity–Specificity Trade-Off</h3>
+<p>TPR and FPR are inversely related and controlled by the decision threshold:</p>
+<div id="tbl-TPR-FPR" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-TPR-FPR-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: TPR and FPR
+</figcaption>
+<div aria-describedby="tbl-TPR-FPR-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Threshold Change</th>
+<th>Effect on TPR</th>
+<th>Effect on FPR</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Lower threshold</td>
+<td>⬆️</td>
+<td>⬆️</td>
+<td>More sensitive, more false alarms</td>
+</tr>
+<tr class="even">
+<td>Higher threshold</td>
+<td>⬇️</td>
+<td>⬇️</td>
+<td>Less sensitive, fewer false alarms</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The optimal threshold depends on the application: voice assistants prioritize high TPR (don’t miss commands), while speech coders prioritize low FPR (don’t waste bandwidth on silence).</p>
+</section>
+<section id="roc-curves" class="level3">
+<h3 class="anchored" data-anchor-id="roc-curves">ROC Curves</h3>
+<p>Receiver Operating Characteristic (ROC) curves plot TPR against FPR across all possible thresholds, providing a comprehensive view of VAD performance independent of any single threshold choice. The area under the ROC curve (AUC) serves as a single-number summary of detection quality.</p>
+</section>
+</section>
+<section id="applications-and-role-in-speech-pipelines" class="level2">
+<h2 class="anchored" data-anchor-id="applications-and-role-in-speech-pipelines">Applications and Role in Speech Pipelines</h2>
+<p>VAD is rarely the end goal—it serves as a critical pre-processing step that enables efficient downstream processing.</p>
+<section id="why-use-vad" class="level3">
+<h3 class="anchored" data-anchor-id="why-use-vad">Why Use VAD?</h3>
+<ul>
+<li>Computational savings: Restrict expensive algorithms (ASR, diarization) to speech segments only.</li>
+<li>Bandwidth reduction: In speech coding, suppress transmission during silence (discontinuous transmission).</li>
+<li>Noise estimation: In speech enhancement, characterize noise from non-speech regions to improve denoising of speech regions.</li>
+</ul>
+</section>
+<section id="key-applications" class="level3">
+<h3 class="anchored" data-anchor-id="key-applications">Key Applications</h3>
+<div id="tbl-applications" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-applications-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4: Key Applications of VAD
+</figcaption>
+<div aria-describedby="tbl-applications-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Domain</th>
+<th style="text-align: left;">VAD’s Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Speech recognition (ASR)</td>
+<td style="text-align: left;">Feed only speech frames to the recognizer, reducing CPU/GPU load</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Speech enhancement</td>
+<td style="text-align: left;">Estimate noise profile from non-speech segments; apply denoising to speech segments</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Speaker diarization</td>
+<td style="text-align: left;">Segment audio into speaker turns by identifying speech regions first</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Speech coding</td>
+<td style="text-align: left;">Enable discontinuous transmission (DTX) to save bandwidth during silence</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Voice assistants</td>
+<td style="text-align: left;">Trigger downstream processing only when the user is speaking</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hearing aids</td>
+<td style="text-align: left;">Activate noise reduction and amplification selectively</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>VAD’s combination of low complexity and high impact makes it a universal first stage in speech processing systems.</p>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>Voice Activity Detection transforms the continuous problem of “when is someone speaking?” into a binary classification task operating on short audio frames. While conceptually simple, robust VAD in real-world conditions requires careful engineering:</p>
+<ul>
+<li>A well-designed pipeline (segmentation → features → classification → post-processing)</li>
+<li>Appropriate feature selection for the target acoustic environment</li>
+<li>Smart post-processing to stabilize decisions</li>
+<li>Modern deep learning approaches for challenging noise conditions</li>
+</ul>
+<p>The right VAD solution balances accuracy, latency, and computational cost for the specific application at hand.</p>
 
 
 </section>
-
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
