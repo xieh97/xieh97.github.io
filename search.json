@@ -81,7 +81,7 @@
     "href": "index.html#news",
     "title": "👋 Hi, I’m Huang Xie (谢晃)",
     "section": "📰 News",
-    "text": "📰 News\n\n[2026-07-04] 💻 Just released Sam3-FastAPI — A Dockerized web service that wraps Meta’s Segment Anything Model 3 (SAM3) in a simple FastAPI interface.\n[2026-07-01] 🏆 The DCASE2026 Challenge results are in! Congratulations to all participants! 🥳🎉🎉🎉\n[2026-03-16] 👥 Joined the Multimodality Research Group at University of Helsinki as a postdoctoral researcher.\n[2026-02-08] 🎓 Officially completed my PhD in the Audio Research Group at Tampere University."
+    "text": "📰 News\n\n[2026-07-19] 💻 Just released VAD-FastAPI — A Dockerized web service that wraps Silero VAD in a simple FastAPI interface.\n[2026-07-04] 💻 Released Sam3-FastAPI — A Dockerized web service that wraps Meta’s Segment Anything Model 3 (SAM3) in a simple FastAPI interface.\n[2026-07-01] 🏆 The DCASE2026 Challenge results are in! Congratulations to all participants! 🥳🎉🎉🎉\n[2026-03-16] 👥 Joined the Multimodality Research Group at University of Helsinki as a postdoctoral researcher.\n[2026-02-08] 🎓 Officially completed my PhD in the Audio Research Group at Tampere University."
   },
   {
     "objectID": "about.html",
