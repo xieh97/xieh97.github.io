@@ -1,0 +1,8 @@
+page-navigation: true
+page-layout: full
+toc: true
+
+format:
+  html:
+    grid:
+      margin-width: 300px

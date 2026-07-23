@@ -1,0 +1,100 @@
+---
+title: "Understanding Speaker Diarization"
+author: Xie, Huang
+date: 2026-07-23
+image: /resources/images/blowfish.png
+image-alt: "Speaker Diarization"
+categories:
+  - "Speaker Diarization"
+
+reference-location: margin
+---
+
+![Blowfish: Understanding Speaker Diarization](/resources/images/blowfish.png){fig-align="center" width=25%}
+
+
+In an era dominated by voice assistants, meeting transcriptions, and call analytics, machines must do more than just understand words—they must understand who is speaking.
+
+This capability is powered by a sophisticated audio processing technology known as speaker diarization.
+At its core, speaker diarization is the process of answering the question: "Who spoke when?"
+
+It takes an audio recording with an unknown number of speakers and partitions it into homogeneous segments according to speaker identity, all without any prior knowledge about the participants.
+
+
+## The Two Core Objectives
+
+While the final output is a simple speaker-labeled transcript, the process achieves two fundamental goals:
+
+- Speaker Detection: Determining the total number of distinct speakers present in the recording.
+- Speaker Attribution: Assigning every segment of speech to its correct speaker label.
+
+
+## The Technical Workflow: From Audio to Answers
+
+A typical diarization system follows a multi-stage process, though modern approaches are beginning to unify these steps.
+
+
+### 1. Audio Segmentation (and Speech Detection)
+
+The first task is to distinguish speech from non-speech.
+
+A Voice Activity Detection (VAD) model analyzes the audio and outputs timestamps for regions containing human speech, effectively ignoring background noise and silence.
+This speech data is then divided into smaller, uniform segments for processing.
+
+
+### 2. Speaker Embedding Generation
+
+This stage transforms the acoustic properties of a voice into a mathematical representation called an embedding.
+
+The goal is to create a "voiceprint" for each segment, where embeddings from the same speaker are highly similar, maximizing inter-speaker variability and minimizing intra-speaker variability.
+
+
+### 3. Speaker Count Estimation
+
+Before assigning labels, the system must estimate how many speakers exist in the recording.
+
+This number is often determined during the clustering stage.
+
+
+### 4. Clustering and Assignment
+
+The speaker embeddings are grouped so that all segments from one person fall into a single cluster.
+
+The most common method is Agglomerative Hierarchical Clustering (AHC), a bottom-up approach that iteratively merges the most similar speech segments until the optimal number of speaker clusters is formed.
+
+Finally, a label (e.g., "Speaker A", "Speaker B") is assigned to each cluster, producing the final diarized output.
+
+
+## Two Dominant Architectural Philosophies
+
+Modern speaker diarization typically falls into two categories.
+
+
+### Pipeline-based (Clustering) Systems
+
+The traditional approach treats diarization as a sequential pipeline of independent modules: VAD, segmentation, embedding extraction, and clustering.
+
+- Advantages: The process is transparent, allowing developers to optimize and debug each stage individually.
+- Disadvantages: Error propagation is a significant risk; a mistake in VAD or segmentation can cascade through the rest of the pipeline and ruin the final output.
+
+
+### End-to-end Neural Systems
+
+To circumvent error propagation, modern systems use a single, unified deep neural network—often a transformer architecture—that maps raw audio directly to speaker-labeled segments.
+
+These models have been proposed to learn fixed-dimensional embeddings and scoring functions simultaneously, matching or exceeding the performance of traditional i-vector-based pipelines.
+
+- Advantages: They excel at capturing complex patterns, making them more robust in challenging scenarios like overlapping speech, subtle voice changes, and brief utterances.
+- Disadvantages: This approach is a "black box", offering far less interpretability, which makes debugging errors difficult.
+
+
+## Measuring Success: The Diarization Error Rate (DER)
+
+The industry-standard metric for evaluating a system's performance is the Diarization Error Rate (DER).
+It measures the fraction of time that is not attributed correctly to a speaker or non-speech.
+
+The DER is the sum of three critical errors:
+
+- Speaker Error: The percentage of scored time that a speaker ID is assigned to the wrong speaker. This is a core diarization system error, unrelated to speech/non-speech detection.
+- False Alarm Speech: The percentage of time a non-speech segment (like silence) is incorrectly labeled as a speaker. This typically results from a VAD error.
+- Missed Speech: The percentage of time a speaker's voice is incorrectly labeled as non-speech. This is also a VAD-related error, not a clustering fault.

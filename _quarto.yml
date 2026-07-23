@@ -1,0 +1,51 @@
+project:
+  type: website
+  output-dir: _output
+  resources:
+    - resources/**
+  render:
+    - "*.qmd"
+    - "*.md"
+    - "!about.md"
+  preview:
+    port: 7788
+    host: localhost
+    browser: false
+    watch-inputs: true
+    navigate: true
+
+website:
+  title: "🪶 Huang Xie's Personal Website"
+  description: "Huang Xie (谢晃) is a machine learning researcher and engineer, working on multimodal deep learning algorithms and software development."
+  favicon: resources/images/blowfish.ico
+  site-url: https://xieh97.github.io
+  repo-url: https://github.com/xieh97/xieh97.github.io
+
+  navbar:
+    title: "🪶 xieh97's Lab"
+    search: false
+    tools:
+      - icon: github
+        href: https://github.com/xieh97
+    left:
+      - text: "👋 Home"
+        href: index.qmd
+      - text: "🦜 Projects"
+      - text: "🦉 Posts"
+        href: posts/index.qmd
+      - text: "📚 Publications"
+        href: publications.qmd
+      - text: "🕊️ About Me"
+        href: about.qmd
+  back-to-top-navigation: true
+  page-footer: "Copyright 2026, Huang Xie"
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+
+

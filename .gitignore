@@ -1,0 +1,6 @@
+/.idea/
+
+/.quarto/
+**/*.quarto_ipynb
+
+/_output/

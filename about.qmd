@@ -1,0 +1,66 @@
+---
+title: "Huang Xie, PhD"
+image: resources/images/profile.png
+page-navigation: false
+page-layout: full
+toc: false
+about:
+    id: hero-heading
+    template: trestles
+    image-width: 16em
+    image-shape: round
+    links:
+        - text: "{{< fa brands github >}} GitHub"
+          href: https://github.com/xieh97
+          aria-label: "GitHub"
+        - text: "{{< fa brands linkedin >}} LinkedIn"
+          href: https://www.linkedin.com/in/huang-xie-28b7872bb
+          aria-label: "LinkedIn"
+        - text: "{{< fa brands orcid >}} ORCID"
+          href: https://orcid.org/0000-0001-7609-8049
+          aria-label: "ORCID"
+        - text: "{{< fa brands google-scholar >}} Google Scholar"
+          href: https://scholar.google.com/citations?user=_wmP81AAAAAJ
+          aria-label: "Google Scholar"
+---
+
+::: {#hero-heading}
+
+I'm a postdoctoral researcher in the [Multimodality Research Group](https://www.helsinki.fi/multimodality) at the University of Helsinki.
+I earned my PhD in 2026 from the [Audio Research Group](https://research.tuni.fi/arg/) at Tampere University, where I also completed my MSc in Data Engineering and Machine Learning in 2020.
+I hold an MEng in Software Engineering from the University of Science and Technology of China (2014).
+Prior to my academic career, I spent over seven years in the industry as a full-stack software engineer.
+I'm passionate about bridging AI research and real-world applications.
+
+## 🕊️ Research Interests
+
+- 🤖 Multimodal Deep Learning
+- 🎬 Audio & Video Understanding
+- 🔍 Self-Supervised Learning, Zero-Shot Learning
+- 💻 Software Development
+
+## 🎓 Education
+
+- 🐦‍🔥 Ph.D. in Signal Processing and Machine Learning ∙ Tampere University ∙ 2026
+- 🦉 M.Sc. in Data Engineering and Machine Learning ∙ Tampere University ∙ 2020
+- 🦩 M.Eng. in Software Engineering ∙ University of Science and Technology of China ∙ 2014
+- 🕊️ B.Eng. in Aircraft Design and Engineering ∙ Beihang University ∙ 2010
+
+## 👥 Experience
+
+- 🎓 Postdoctoral Researcher ∙ University of Helsinki ∙ 2026 -- Present
+- 🎓 Doctoral Researcher ∙ Tampere University ∙ 2021 -- 2025
+- 🎓 Research Assistant ∙ Tampere University ∙ 2019 -- 2020
+- 💻 Fullstack Software Engineer ∙ Bohai Commodity Exchange ∙ 2015 -- 2018
+- 💻 Fullstack Software Engineer ∙ Industrial Software Research Institute ∙ 2014 -- 2015
+- 💻 Software Engineer Intern ∙ Shanghai Advanced Research Institute ∙ 2013 -- 2014
+- 💻 Software Engineer Intern ∙ CASIC Second Academy ∙ 2011 -- 2012
+
+## 🤝 Academic Services
+
+- 🎯 Conference Reviewer: ICASSP (2021--26), DCASE (2022--26), IJCNN (2025--27)
+- 📋 Journal Reviewer: TASLP
+- 🌐 Workshop Organizer: DCASE Challenge (2022--26)
+
+:::
+

@@ -1,0 +1,9 @@
+---
+title: "🦉 Posts"
+listing:
+    contents:
+        - "**/index.qmd"
+    type: default
+    sort: "date desc"
+    categories: true
+---
