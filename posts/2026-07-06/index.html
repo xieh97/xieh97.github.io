@@ -45,7 +45,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-585ea4d06bc480d6f5315aedfbee8512.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-a5b6ddc40c55a8570d4230c3d55fad02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -132,30 +132,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#why-vad-is-challenging" id="toc-why-vad-is-challenging" class="nav-link active" data-scroll-target="#why-vad-is-challenging">Why VAD is Challenging</a></li>
-  <li><a href="#the-vad-pipeline" id="toc-the-vad-pipeline" class="nav-link" data-scroll-target="#the-vad-pipeline">The VAD Pipeline</a>
+  <li><a href="#challenges-in-vad" id="toc-challenges-in-vad" class="nav-link active" data-scroll-target="#challenges-in-vad">Challenges in VAD</a></li>
+  <li><a href="#vad-workflow" id="toc-vad-workflow" class="nav-link" data-scroll-target="#vad-workflow">VAD Workflow</a>
   <ul class="collapse">
   <li><a href="#frame-segmentation" id="toc-frame-segmentation" class="nav-link" data-scroll-target="#frame-segmentation">1. Frame Segmentation</a></li>
   <li><a href="#feature-extraction" id="toc-feature-extraction" class="nav-link" data-scroll-target="#feature-extraction">2. Feature Extraction</a></li>
   <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification">3. Classification</a></li>
   <li><a href="#post-processing" id="toc-post-processing" class="nav-link" data-scroll-target="#post-processing">4. Post-Processing</a></li>
   </ul></li>
-  <li><a href="#traditional-vad-vs.-deep-learning-vad" id="toc-traditional-vad-vs.-deep-learning-vad" class="nav-link" data-scroll-target="#traditional-vad-vs.-deep-learning-vad">Traditional VAD vs.&nbsp;Deep Learning VAD</a>
+  <li><a href="#vad-approaches" id="toc-vad-approaches" class="nav-link" data-scroll-target="#vad-approaches">VAD Approaches</a>
   <ul class="collapse">
-  <li><a href="#traditional-signal-processing-vad" id="toc-traditional-signal-processing-vad" class="nav-link" data-scroll-target="#traditional-signal-processing-vad">Traditional (Signal Processing) VAD</a></li>
-  <li><a href="#deep-learning-vad" id="toc-deep-learning-vad" class="nav-link" data-scroll-target="#deep-learning-vad">Deep Learning VAD</a></li>
+  <li><a href="#traditional-vad" id="toc-traditional-vad" class="nav-link" data-scroll-target="#traditional-vad">Traditional VAD</a></li>
+  <li><a href="#deep-learning-vad" id="toc-deep-learning-vad" class="nav-link" data-scroll-target="#deep-learning-vad">Deep learning VAD</a></li>
   </ul></li>
-  <li><a href="#evaluating-vad-performance" id="toc-evaluating-vad-performance" class="nav-link" data-scroll-target="#evaluating-vad-performance">Evaluating VAD Performance</a>
-  <ul class="collapse">
-  <li><a href="#core-metrics" id="toc-core-metrics" class="nav-link" data-scroll-target="#core-metrics">Core Metrics</a></li>
-  <li><a href="#the-sensitivityspecificity-trade-off" id="toc-the-sensitivityspecificity-trade-off" class="nav-link" data-scroll-target="#the-sensitivityspecificity-trade-off">The Sensitivity–Specificity Trade-Off</a></li>
-  <li><a href="#roc-curves" id="toc-roc-curves" class="nav-link" data-scroll-target="#roc-curves">ROC Curves</a></li>
-  </ul></li>
-  <li><a href="#applications-and-role-in-speech-pipelines" id="toc-applications-and-role-in-speech-pipelines" class="nav-link" data-scroll-target="#applications-and-role-in-speech-pipelines">Applications and Role in Speech Pipelines</a>
-  <ul class="collapse">
-  <li><a href="#why-use-vad" id="toc-why-use-vad" class="nav-link" data-scroll-target="#why-use-vad">Why Use VAD?</a></li>
-  <li><a href="#key-applications" id="toc-key-applications" class="nav-link" data-scroll-target="#key-applications">Key Applications</a></li>
-  </ul></li>
+  <li><a href="#evaluating-vad-performance" id="toc-evaluating-vad-performance" class="nav-link" data-scroll-target="#evaluating-vad-performance">Evaluating VAD Performance</a></li>
+  <li><a href="#vad-applications" id="toc-vad-applications" class="nav-link" data-scroll-target="#vad-applications">VAD Applications</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul>
 </nav>
@@ -203,340 +194,102 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>Blowfish: Understanding Voice Activity Detection</figcaption>
 </figure>
 </div>
-<p>Voice Activity Detection (VAD)—also known as speech activity detection, speech detection, or simply voice detection—is a class of signal-processing techniques that determine whether an audio signal contains human speech.</p>
-<p>At its core, VAD answers one binary question: “Is someone speaking right now?”</p>
-<p>VAD systems analyze audio in real time, processing small chunks (frames) continuously to distinguish speech from silence or background noise. This technology powers everything from teleconferencing and voice assistants to speech coding and hearing aids.</p>
-<section id="why-vad-is-challenging" class="level2">
-<h2 class="anchored" data-anchor-id="why-vad-is-challenging">Why VAD is Challenging</h2>
-<p>In noise-free environments with clean recordings, VAD is trivial. But real-world conditions introduce significant complexity:</p>
+<p>Before any speech recognition system can transcribe words, or any speaker diarization system can identify who is speaking, a more fundamental question must be answered first: is anyone speaking at all? This is the job of Voice Activity Detection.</p>
+<p>Voice Activity Detection (VAD)—also known as speech activity detection or speech detection—is a class of signal-processing techniques that determine whether an audio signal contains human speech. At its core, VAD answers the binary question: “Is someone speaking right now?”</p>
+<p>This seemingly simple task powers a vast range of technologies, from teleconferencing and voice assistants to speech coding and hearing aids. VAD systems analyze audio in real time, continuously processing small chunks called frames to distinguish speech from silence or background noise.</p>
+<section id="challenges-in-vad" class="level2">
+<h2 class="anchored" data-anchor-id="challenges-in-vad">Challenges in VAD</h2>
+<p>In a noise-free recording studio, detecting speech is trivial. But the real world is rarely so accommodating.</p>
+<p>Robust VAD systems must contend with a host of complications:</p>
 <ul>
-<li>Background Noise: HVAC hum, traffic, music, office chatter, factory machinery</li>
-<li>Voice-Like Sounds: coughing, laughter, throat clearing, mouth noises</li>
-<li>Room Acoustics: reverberation, echo, far-field microphone pickup</li>
-<li>Audio Degradation: compression artifacts, low sample rates, inexpensive microphones</li>
-<li>Competing Speakers: background conversation (babble noise) is particularly difficult; even humans struggle to isolate a target speaker in these conditions</li>
-<li>Computational Constraints: many applications require lightweight models for low-latency processing</li>
+<li>Background Noise: HVAC hum, traffic, music, office chatter, and factory machinery can all mask speech.</li>
+<li>Voice-Like Sounds: Coughing, laughter, throat clearing, and mouth noises can easily fool a simple detector.</li>
+<li>Room Acoustics: Reverberation, echo, and far-field microphone pickup degrade signal clarity.</li>
+<li>Audio Degradation: Compression artifacts, low sample rates, and inexpensive microphones strip away useful information.</li>
+<li>Competing Speakers: Background conversation, known as babble noise, is particularly difficult—even humans struggle to isolate a target speaker in these conditions.</li>
+<li>Computational Constraints: Many applications demand lightweight models capable of low-latency processing, ruling out the most resource-intensive solutions.</li>
 </ul>
-<p>A robust VAD system must accurately detect speech despite these challenges while remaining computationally efficient enough for production deployment.</p>
+<p>A successful VAD system must accurately navigate all these challenges while remaining efficient enough for real-world deployment.</p>
 </section>
-<section id="the-vad-pipeline" class="level2">
-<h2 class="anchored" data-anchor-id="the-vad-pipeline">The VAD Pipeline</h2>
-<p>VAD transforms raw audio into clean speech/non-speech decisions through four stages:</p>
+<section id="vad-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="vad-workflow">VAD Workflow</h2>
+<p>Modern VAD transforms raw audio into clean speech-or-non-speech decisions through four sequential stages.</p>
 <section id="frame-segmentation" class="level3">
 <h3 class="anchored" data-anchor-id="frame-segmentation">1. Frame Segmentation</h3>
-<p>The continuous audio stream is divided into short, overlapping frames (typically 10–30 ms). This framing is critical because speech characteristics are relatively stable over these short intervals.</p>
-<p>Production standard: 25 ms frames with a 10 ms step (hop) between consecutive frames. A Hamming window is applied to each frame to taper edges and prevent spectral leakage that would otherwise corrupt frequency analysis.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Shorter frames → Faster response to speech onsets/offsets</li>
-<li>Longer frames → Better frequency resolution for classification</li>
-</ul>
-</div>
-</div>
+<p>The continuous audio stream is first divided into short, overlapping frames, typically 10 to 30 milliseconds in length.</p>
+<p>This framing is essential because the acoustic properties of speech remain relatively stable over such brief intervals. The production standard is 25-millisecond frames with a 10-millisecond step, or hop, between consecutive frames.</p>
+<p>Then, a Hamming window is applied to each frame to taper its edges, preventing spectral leakage that would otherwise corrupt the subsequent frequency analysis.</p>
+<p>Shorter frames yield faster response to speech onsets and offsets, while longer frames provide better frequency resolution for classification.</p>
 </section>
 <section id="feature-extraction" class="level3">
 <h3 class="anchored" data-anchor-id="feature-extraction">2. Feature Extraction</h3>
-<p>Raw waveform samples are converted into meaningful numerical features that highlight properties distinguishing speech from non-speech.</p>
-<p>Feature selection depends on the acoustic environment:</p>
-<div id="tbl-features" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: Suitable Features in Different Acoustic Environments
-</figcaption>
-<div aria-describedby="tbl-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Environment</th>
-<th style="text-align: left;">Suitable Features</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Quiet office</td>
-<td style="text-align: left;">Short-time energy, zero-crossing rate</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Moderate noise</td>
-<td style="text-align: left;">Spectral centroid, spectral flux, harmonicity</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Heavy noise</td>
-<td style="text-align: left;">MFCCs, mel-spectrograms, pitch correlation</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Echo-prone spaces</td>
-<td style="text-align: left;">Adaptive filtering + non-linear processing</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
+<p>Raw waveform samples are transformed into numerical features that highlight the properties distinguishing speech from non-speech.</p>
+<p>The choice of features depends heavily on the acoustic environment.</p>
+<p>In a quiet office, simple metrics like short-time energy and zero-crossing rate may suffice. In moderate noise, spectral features such as centroid, flux, and harmonicity prove more robust. For heavy noise, Mel-frequency cepstral coefficients (MFCCs), mel-spectrograms, and pitch correlation become necessary. In echo-prone spaces, adaptive filtering paired with non-linear processing is often required.</p>
 </section>
 <section id="classification" class="level3">
 <h3 class="anchored" data-anchor-id="classification">3. Classification</h3>
 <p>The extracted features are fed into a classifier that outputs a speech probability for each frame.</p>
-<p>Three tiers of classification approaches:</p>
+<p>Classification approaches fall into three tiers.</p>
 <ul>
-<li>Threshold-based: Compare frame energy to an estimated noise floor; classify as speech if above a fixed or adaptive threshold. Simplest approach; fails in dynamic noise.</li>
-<li>Statistical models: Gaussian Mixture Models (GMMs) or Hidden Markov Models (HMMs) learn separate probability distributions for speech and noise, handling moderate noise variability.</li>
-<li>Neural networks: Deep learning models learn complex speech–noise patterns directly from data, excelling in the noisiest environments (trains, warehouses, open offices).</li>
+<li>The simplest uses threshold-based methods, comparing frame energy to an estimated noise floor and classifying anything above the threshold as speech—an approach that fails when noise levels fluctuate.</li>
+<li>More sophisticated statistical models, such as Gaussian Mixture Models (GMMs) or Hidden Markov Models (HMMs), learn separate probability distributions for speech and noise, handling moderate variability.</li>
+<li>At the highest tier, neural networks learn complex speech–noise patterns directly from data and excel in the most challenging environments, from train stations to open-plan offices.</li>
 </ul>
 </section>
 <section id="post-processing" class="level3">
 <h3 class="anchored" data-anchor-id="post-processing">4. Post-Processing</h3>
-<p>Raw frame-by-frame decisions are often noisy, with rapid flickering between speech and non-speech. Post-processing smooths these decisions for stable, usable output.</p>
-<p>Key techniques:</p>
-<ul>
-<li>Hangover schemes: Extend the “speech” label for a short duration after the classifier detects silence, preventing mid-syllable chopping during brief pauses.</li>
-<li>Median filters: Remove isolated single-frame glitches that cause false triggers.</li>
-<li>Hysteresis: Use asymmetric thresholds: require higher confidence to <em>start</em> detecting speech but lower confidence to <em>stop</em>, mimicking the behavior of a Schmitt trigger to eliminate rapid toggling.</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<p>Raw frame-by-frame classifications are inherently noisy, often flickering rapidly between speech and non-speech decisions.</p>
+<p>Post-processing smooths these decisions into stable, usable output.</p>
+<p>Hangover schemes extend the speech label for a short duration after the classifier detects silence, preventing mid-syllable chopping during natural pauses. Median filters remove isolated single-frame glitches. Hysteresis applies asymmetric thresholds, requiring higher confidence to start detecting speech but lower confidence to stop, eliminating rapid toggling.</p>
 <p>In many production systems, post-processing contributes more to perceived VAD quality than the classifier itself.</p>
-</div>
-</div>
 </section>
 </section>
-<section id="traditional-vad-vs.-deep-learning-vad" class="level2">
-<h2 class="anchored" data-anchor-id="traditional-vad-vs.-deep-learning-vad">Traditional VAD vs.&nbsp;Deep Learning VAD</h2>
-<section id="traditional-signal-processing-vad" class="level3">
-<h3 class="anchored" data-anchor-id="traditional-signal-processing-vad">Traditional (Signal Processing) VAD</h3>
-<p>Traditional systems rely on hand-crafted acoustic features designed by domain experts:</p>
-<div id="tbl-hand-crafted-features" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-hand-crafted-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2: Hand-crafted Acoustic Features
-</figcaption>
-<div aria-describedby="tbl-hand-crafted-features-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
-<colgroup>
-<col style="width: 31%">
-<col style="width: 68%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Feature</th>
-<th style="text-align: left;">Principle</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Energy levels</td>
-<td style="text-align: left;">Speech is typically louder than background silence</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Zero-crossing rate</td>
-<td style="text-align: left;">Voiced speech has predictable oscillation patterns</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Spectral features</td>
-<td style="text-align: left;">Human speech occupies specific frequency bands (300–3400 Hz)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Pitch detection</td>
-<td style="text-align: left;">Speech exhibits harmonic structure; most noise does not</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Signal-to-noise ratio (SNR)</td>
-<td style="text-align: left;">Speech has higher energy relative to the noise floor</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<p>Characteristics:</p>
-<ul>
-<li>Use statistical models (GMMs, HMMs) or fixed/adaptive thresholds</li>
-<li>Follow explicit, interpretable rules</li>
-<li>Fast and lightweight</li>
-<li>Struggle with voice-like noise and dynamic acoustic conditions</li>
-<li>Performance bounded by engineer-designed features</li>
-</ul>
+<section id="vad-approaches" class="level2">
+<h2 class="anchored" data-anchor-id="vad-approaches">VAD Approaches</h2>
+<p>The evolution of VAD mirrors the broader shift in signal processing from hand-crafted rules to data-driven learning.</p>
+<section id="traditional-vad" class="level3">
+<h3 class="anchored" data-anchor-id="traditional-vad">Traditional VAD</h3>
+<p>Traditional VAD relies on acoustic features designed by domain experts.</p>
+<p>These include energy levels (speech is typically louder than background silence), zero-crossing rate (voiced speech has predictable oscillation patterns), spectral content (human speech occupies specific frequency bands, roughly 300 to 3400 Hz), pitch detection (speech exhibits harmonic structure that most noise lacks), and signal-to-noise ratio.</p>
+<p>These systems use statistical models or adaptive thresholds, follow explicit and interpretable rules, and are fast and lightweight.</p>
+<p>Their limitation is clear: they struggle with voice-like noise and dynamic acoustic conditions, and their performance is bounded by the ingenuity of the features an engineer can design.</p>
 </section>
 <section id="deep-learning-vad" class="level3">
-<h3 class="anchored" data-anchor-id="deep-learning-vad">Deep Learning VAD</h3>
-<p>Modern VAD systems use neural networks that learn speech–noise distinctions directly from data, eliminating manual feature engineering.</p>
-<p>How they work:</p>
-<ul>
-<li>Accept raw audio or spectrograms as input</li>
-<li>Automatically learn optimal feature representations from thousands of hours of labeled audio</li>
-<li>Commonly use architectures like CNNs (capturing local time–frequency patterns), RNNs (modeling temporal dependencies), or hybrid CNN–RNN designs</li>
-</ul>
-<p>Characteristics:</p>
-<ul>
-<li>Robust to complex noise, reverberation, and accent variability</li>
-<li>Significantly outperform traditional methods in adverse conditions</li>
-<li>More computationally demanding (though optimized models now run on-device)</li>
-<li>May require representative training data for target deployment environments</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>MFCCs and Spectrograms: While deep learning VAD learns features automatically, mel-frequency cepstral coefficients (MFCCs) and mel-spectrograms are often used as input representations because they approximate human auditory perception and provide a compact, informative format for the network.</p>
-</div>
-</div>
+<h3 class="anchored" data-anchor-id="deep-learning-vad">Deep learning VAD</h3>
+<p>Deep learning VAD takes a different path entirely.</p>
+<p>Neural networks learn the distinction between speech and noise directly from thousands of hours of labeled audio, eliminating manual feature engineering. They accept raw audio or spectrograms as input and automatically learn optimal feature representations.</p>
+<p>Common architectures include Convolutional Neural Networks (CNNs) for capturing local time–frequency patterns, Recurrent Neural Networks (RNNs) for modeling temporal dependencies, and hybrid CNN–RNN designs.</p>
+<p>These systems are robust to complex noise, reverberation, and accent variability, significantly outperforming traditional methods in adverse conditions. The trade-off is greater computational demand, though optimized models now run efficiently on-device.</p>
+<p>While deep learning VAD learns features automatically, representations like MFCCs and mel-spectrograms are still often used as inputs because they approximate human auditory perception in a compact, informative format.</p>
 </section>
 </section>
 <section id="evaluating-vad-performance" class="level2">
 <h2 class="anchored" data-anchor-id="evaluating-vad-performance">Evaluating VAD Performance</h2>
-<p>VAD evaluation centers on how accurately the system labels speech and non-speech frames.</p>
-<section id="core-metrics" class="level3">
-<h3 class="anchored" data-anchor-id="core-metrics">Core Metrics</h3>
+<p>VAD evaluation centers on two fundamental questions: how many speech frames did the system miss, and how many silence frames did it incorrectly flag as speech?</p>
+<p>The core metrics are the True Positive Rate (TPR), also known as recall or detection rate, which measures the percentage of actual speech frames correctly identified, and the False Positive Rate (FPR), or false alarm rate, which measures the percentage of non-speech frames incorrectly labeled as speech. The ideal system achieves 100% TPR and 0% FPR.</p>
+<p>In practice, TPR and FPR are locked in an inverse relationship controlled by the decision threshold.</p>
+<p>Lowering the threshold makes the system more sensitive, catching more speech but also triggering more false alarms. Raising the threshold reduces false alarms at the cost of missing more speech.</p>
+<p>The optimal balance depends entirely on the application: voice assistants prioritize high sensitivity to avoid missing commands, while speech coders prioritize low false alarm rates to avoid wasting bandwidth on silence.</p>
+<p>Receiver Operating Characteristic (ROC) curves plot TPR against FPR across all possible thresholds, offering a comprehensive view of performance independent of any single threshold choice. The Area Under the ROC Curve (AUC) serves as a single-number summary of detection quality.</p>
+</section>
+<section id="vad-applications" class="level2">
+<h2 class="anchored" data-anchor-id="vad-applications">VAD Applications</h2>
+<p>VAD is rarely the final goal—it serves as a critical preprocessing step that enables efficient downstream processing.</p>
+<p>Its value lies in three primary functions:</p>
 <ul>
-<li>True Positive Rate (TPR, Recall, Detection Rate): Percentage of actual speech frames correctly identified as speech. <em>Ideally:</em> 100% (never misses speech).</li>
-<li>False Positive Rate (FPR, False Alarm Rate): Percentage of non-speech frames incorrectly labeled as speech. <em>Ideally:</em> 0% (never triggers on silence or noise).</li>
+<li>computational savings, by restricting expensive algorithms like automatic speech recognition and speaker diarization to speech segments only;</li>
+<li>bandwidth reduction, by suppressing transmission during silence in speech coding through discontinuous transmission;</li>
+<li>and noise estimation, by characterizing noise from non-speech regions to improve denoising of speech regions in enhancement systems.</li>
 </ul>
-</section>
-<section id="the-sensitivityspecificity-trade-off" class="level3">
-<h3 class="anchored" data-anchor-id="the-sensitivityspecificity-trade-off">The Sensitivity–Specificity Trade-Off</h3>
-<p>TPR and FPR are inversely related and controlled by the decision threshold:</p>
-<div id="tbl-TPR-FPR" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-TPR-FPR-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3: TPR and FPR
-</figcaption>
-<div aria-describedby="tbl-TPR-FPR-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
-<colgroup>
-<col style="width: 21%">
-<col style="width: 17%">
-<col style="width: 17%">
-<col style="width: 42%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Threshold Change</th>
-<th>Effect on TPR</th>
-<th>Effect on FPR</th>
-<th>Result</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Lower threshold</td>
-<td>⬆️</td>
-<td>⬆️</td>
-<td>More sensitive, more false alarms</td>
-</tr>
-<tr class="even">
-<td>Higher threshold</td>
-<td>⬇️</td>
-<td>⬇️</td>
-<td>Less sensitive, fewer false alarms</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<p>The optimal threshold depends on the application: voice assistants prioritize high TPR (don’t miss commands), while speech coders prioritize low FPR (don’t waste bandwidth on silence).</p>
-</section>
-<section id="roc-curves" class="level3">
-<h3 class="anchored" data-anchor-id="roc-curves">ROC Curves</h3>
-<p>Receiver Operating Characteristic (ROC) curves plot TPR against FPR across all possible thresholds, providing a comprehensive view of VAD performance independent of any single threshold choice. The area under the ROC curve (AUC) serves as a single-number summary of detection quality.</p>
-</section>
-</section>
-<section id="applications-and-role-in-speech-pipelines" class="level2">
-<h2 class="anchored" data-anchor-id="applications-and-role-in-speech-pipelines">Applications and Role in Speech Pipelines</h2>
-<p>VAD is rarely the end goal—it serves as a critical pre-processing step that enables efficient downstream processing.</p>
-<section id="why-use-vad" class="level3">
-<h3 class="anchored" data-anchor-id="why-use-vad">Why Use VAD?</h3>
-<ul>
-<li>Computational savings: Restrict expensive algorithms (ASR, diarization) to speech segments only.</li>
-<li>Bandwidth reduction: In speech coding, suppress transmission during silence (discontinuous transmission).</li>
-<li>Noise estimation: In speech enhancement, characterize noise from non-speech regions to improve denoising of speech regions.</li>
-</ul>
-</section>
-<section id="key-applications" class="level3">
-<h3 class="anchored" data-anchor-id="key-applications">Key Applications</h3>
-<div id="tbl-applications" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-applications-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;4: Key Applications of VAD
-</figcaption>
-<div aria-describedby="tbl-applications-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 76%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Domain</th>
-<th style="text-align: left;">VAD’s Role</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Speech recognition (ASR)</td>
-<td style="text-align: left;">Feed only speech frames to the recognizer, reducing CPU/GPU load</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Speech enhancement</td>
-<td style="text-align: left;">Estimate noise profile from non-speech segments; apply denoising to speech segments</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Speaker diarization</td>
-<td style="text-align: left;">Segment audio into speaker turns by identifying speech regions first</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Speech coding</td>
-<td style="text-align: left;">Enable discontinuous transmission (DTX) to save bandwidth during silence</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Voice assistants</td>
-<td style="text-align: left;">Trigger downstream processing only when the user is speaking</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Hearing aids</td>
-<td style="text-align: left;">Activate noise reduction and amplification selectively</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<p>VAD’s combination of low complexity and high impact makes it a universal first stage in speech processing systems.</p>
-</section>
+<p>This makes VAD a universal first stage across speech processing.</p>
+<p>In speech recognition, it feeds only speech frames to the recognizer, reducing computational load. In speech enhancement, it identifies non-speech segments from which to estimate noise profiles. In speaker diarization, it finds speech regions before segmenting speaker turns. In speech coding, it enables discontinuous transmission to save bandwidth. In voice assistants, it triggers downstream processing only when the user is speaking. In hearing aids, it activates noise reduction and amplification selectively. The combination of low complexity and high impact makes VAD indispensable.</p>
 </section>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>Voice Activity Detection transforms the continuous problem of “when is someone speaking?” into a binary classification task operating on short audio frames. While conceptually simple, robust VAD in real-world conditions requires careful engineering:</p>
-<ul>
-<li>A well-designed pipeline (segmentation → features → classification → post-processing)</li>
-<li>Appropriate feature selection for the target acoustic environment</li>
-<li>Smart post-processing to stabilize decisions</li>
-<li>Modern deep learning approaches for challenging noise conditions</li>
-</ul>
-<p>The right VAD solution balances accuracy, latency, and computational cost for the specific application at hand.</p>
+<p>Voice Activity Detection transforms the continuous problem of “when is someone speaking?” into a binary classification task operating on short audio frames.</p>
+<p>While conceptually simple, building a robust VAD system for real-world conditions requires careful engineering: a well-designed pipeline spanning segmentation, feature extraction, classification, and post-processing; appropriate feature selection for the target acoustic environment; smart post-processing to stabilize decisions; and modern deep learning approaches for challenging noise conditions.</p>
+<p>The right VAD solution is the one that finds the optimal balance of accuracy, latency, and computational cost for its specific application.</p>
 
 
 </section>

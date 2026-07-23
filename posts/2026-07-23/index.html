@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Xie, Huang">
+<meta name="dcterms.date" content="2026-07-23">
 
-<title>👋 Hi, I’m Huang Xie (谢晃) – 🪶 Huang Xie's Personal Website</title>
+<title>Understanding Speaker Diarization – 🪶 Huang Xie’s Personal Website</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,24 +28,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./resources/images/blowfish.ico" rel="icon">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a547dd1b4798262c927e2e52fa668cb1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../resources/images/blowfish.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a5b6ddc40c55a8570d4230c3d55fad02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -83,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">🪶 xieh97’s Lab</span>
     </a>
   </div>
@@ -93,7 +95,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">👋 Home</span></a>
   </li>  
   <li class="nav-item">
@@ -102,15 +104,15 @@ ul.task-list li input[type="checkbox"] {
     </span>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./posts/index.html"> 
+    <a class="nav-link" href="../../posts/index.html"> 
 <span class="menu-text">🦉 Posts</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./publications.html"> 
+    <a class="nav-link" href="../../publications.html"> 
 <span class="menu-text">📚 Publications</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">🕊️ About Me</span></a>
   </li>  
 </ul>
@@ -122,7 +124,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -130,23 +132,51 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#news" id="toc-news" class="nav-link active" data-scroll-target="#news">📰 News</a></li>
+  <li><a href="#the-two-core-objectives" id="toc-the-two-core-objectives" class="nav-link active" data-scroll-target="#the-two-core-objectives">The Two Core Objectives</a></li>
+  <li><a href="#the-technical-workflow-from-audio-to-answers" id="toc-the-technical-workflow-from-audio-to-answers" class="nav-link" data-scroll-target="#the-technical-workflow-from-audio-to-answers">The Technical Workflow: From Audio to Answers</a>
+  <ul class="collapse">
+  <li><a href="#audio-segmentation-and-speech-detection" id="toc-audio-segmentation-and-speech-detection" class="nav-link" data-scroll-target="#audio-segmentation-and-speech-detection">1. Audio Segmentation (and Speech Detection)</a></li>
+  <li><a href="#speaker-embedding-generation" id="toc-speaker-embedding-generation" class="nav-link" data-scroll-target="#speaker-embedding-generation">2. Speaker Embedding Generation</a></li>
+  <li><a href="#speaker-count-estimation" id="toc-speaker-count-estimation" class="nav-link" data-scroll-target="#speaker-count-estimation">3. Speaker Count Estimation</a></li>
+  <li><a href="#clustering-and-assignment" id="toc-clustering-and-assignment" class="nav-link" data-scroll-target="#clustering-and-assignment">4. Clustering and Assignment</a></li>
+  </ul></li>
+  <li><a href="#two-dominant-architectural-philosophies" id="toc-two-dominant-architectural-philosophies" class="nav-link" data-scroll-target="#two-dominant-architectural-philosophies">Two Dominant Architectural Philosophies</a>
+  <ul class="collapse">
+  <li><a href="#pipeline-based-clustering-systems" id="toc-pipeline-based-clustering-systems" class="nav-link" data-scroll-target="#pipeline-based-clustering-systems">Pipeline-based (Clustering) Systems</a></li>
+  <li><a href="#end-to-end-neural-systems" id="toc-end-to-end-neural-systems" class="nav-link" data-scroll-target="#end-to-end-neural-systems">End-to-end Neural Systems</a></li>
+  </ul></li>
+  <li><a href="#measuring-success-the-diarization-error-rate-der" id="toc-measuring-success-the-diarization-error-rate-der" class="nav-link" data-scroll-target="#measuring-success-the-diarization-error-rate-der">Measuring Success: The Diarization Error Rate (DER)</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">👋 Hi, I’m Huang Xie (谢晃)</h1>
-</div>
+<h1 class="title">Understanding Speaker Diarization</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Speaker Diarization</div>
+  </div>
+  </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-left">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Xie, Huang </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 23, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -156,18 +186,77 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<blockquote class="blockquote">
-<p>Humans are just humans; Doing something real in the world.</p>
-</blockquote>
-<p>I’m a postdoctoral researcher in the <a href="https://www.helsinki.fi/multimodality">Multimodality Research Group</a> at the University of Helsinki. I earned my PhD in 2026 from the <a href="https://research.tuni.fi/arg/">Audio Research Group</a> at Tampere University, where I also completed my MSc in Data Engineering and Machine Learning in 2020. I hold an MEng in Software Engineering from the University of Science and Technology of China (2014). Prior to my academic career, I spent over seven years in the industry as a full-stack software engineer. I’m passionate about bridging AI research and real-world applications.</p>
-<section id="news" class="level2">
-<h2 class="anchored" data-anchor-id="news">📰 News</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../resources/images/blowfish.png" class="img-fluid figure-img" style="width:25.0%"></p>
+<figcaption>Blowfish: Understanding Speaker Diarization</figcaption>
+</figure>
+</div>
+<p>In an era dominated by voice assistants, meeting transcriptions, and call analytics, machines must do more than just understand words—they must understand who is speaking.</p>
+<p>This capability is powered by a sophisticated audio processing technology known as speaker diarization. At its core, speaker diarization is the process of answering the question: “Who spoke when?”</p>
+<p>It takes an audio recording with an unknown number of speakers and partitions it into homogeneous segments according to speaker identity, all without any prior knowledge about the participants.</p>
+<section id="the-two-core-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="the-two-core-objectives">The Two Core Objectives</h2>
+<p>While the final output is a simple speaker-labeled transcript, the process achieves two fundamental goals:</p>
 <ul>
-<li><strong>[2026-07-19]</strong> 💻 Just released <a href="https://github.com/xieh97/vad-fastapi">VAD-FastAPI</a> — A Dockerized web service that wraps <a href="https://github.com/snakers4/silero-vad">Silero VAD</a> in a simple FastAPI interface.</li>
-<li><strong>[2026-07-04]</strong> 💻 Released <a href="https://github.com/xieh97/sam3-fastapi">Sam3-FastAPI</a> — A Dockerized web service that wraps Meta’s Segment Anything Model 3 (SAM3) in a simple FastAPI interface.</li>
-<li><strong>[2026-07-01]</strong> 🏆 The <a href="https://dcase.community/articles/dcase2026-challenge-results-published">DCASE2026 Challenge</a> results are in! Congratulations to all participants! 🥳🎉🎉🎉</li>
-<li><strong>[2026-03-16]</strong> 👥 Joined the <a href="https://www.helsinki.fi/multimodality">Multimodality Research Group</a> at University of Helsinki as a postdoctoral researcher.</li>
-<li><strong>[2026-02-08]</strong> 🎓 Officially completed my PhD in the <a href="https://research.tuni.fi/arg/">Audio Research Group</a> at Tampere University.</li>
+<li>Speaker Detection: Determining the total number of distinct speakers present in the recording.</li>
+<li>Speaker Attribution: Assigning every segment of speech to its correct speaker label.</li>
+</ul>
+</section>
+<section id="the-technical-workflow-from-audio-to-answers" class="level2">
+<h2 class="anchored" data-anchor-id="the-technical-workflow-from-audio-to-answers">The Technical Workflow: From Audio to Answers</h2>
+<p>A typical diarization system follows a multi-stage process, though modern approaches are beginning to unify these steps.</p>
+<section id="audio-segmentation-and-speech-detection" class="level3">
+<h3 class="anchored" data-anchor-id="audio-segmentation-and-speech-detection">1. Audio Segmentation (and Speech Detection)</h3>
+<p>The first task is to distinguish speech from non-speech.</p>
+<p>A Voice Activity Detection (VAD) model analyzes the audio and outputs timestamps for regions containing human speech, effectively ignoring background noise and silence. This speech data is then divided into smaller, uniform segments for processing.</p>
+</section>
+<section id="speaker-embedding-generation" class="level3">
+<h3 class="anchored" data-anchor-id="speaker-embedding-generation">2. Speaker Embedding Generation</h3>
+<p>This stage transforms the acoustic properties of a voice into a mathematical representation called an embedding.</p>
+<p>The goal is to create a “voiceprint” for each segment, where embeddings from the same speaker are highly similar, maximizing inter-speaker variability and minimizing intra-speaker variability.</p>
+</section>
+<section id="speaker-count-estimation" class="level3">
+<h3 class="anchored" data-anchor-id="speaker-count-estimation">3. Speaker Count Estimation</h3>
+<p>Before assigning labels, the system must estimate how many speakers exist in the recording.</p>
+<p>This number is often determined during the clustering stage.</p>
+</section>
+<section id="clustering-and-assignment" class="level3">
+<h3 class="anchored" data-anchor-id="clustering-and-assignment">4. Clustering and Assignment</h3>
+<p>The speaker embeddings are grouped so that all segments from one person fall into a single cluster.</p>
+<p>The most common method is Agglomerative Hierarchical Clustering (AHC), a bottom-up approach that iteratively merges the most similar speech segments until the optimal number of speaker clusters is formed.</p>
+<p>Finally, a label (e.g., “Speaker A”, “Speaker B”) is assigned to each cluster, producing the final diarized output.</p>
+</section>
+</section>
+<section id="two-dominant-architectural-philosophies" class="level2">
+<h2 class="anchored" data-anchor-id="two-dominant-architectural-philosophies">Two Dominant Architectural Philosophies</h2>
+<p>Modern speaker diarization typically falls into two categories.</p>
+<section id="pipeline-based-clustering-systems" class="level3">
+<h3 class="anchored" data-anchor-id="pipeline-based-clustering-systems">Pipeline-based (Clustering) Systems</h3>
+<p>The traditional approach treats diarization as a sequential pipeline of independent modules: VAD, segmentation, embedding extraction, and clustering.</p>
+<ul>
+<li>Advantages: The process is transparent, allowing developers to optimize and debug each stage individually.</li>
+<li>Disadvantages: Error propagation is a significant risk; a mistake in VAD or segmentation can cascade through the rest of the pipeline and ruin the final output.</li>
+</ul>
+</section>
+<section id="end-to-end-neural-systems" class="level3">
+<h3 class="anchored" data-anchor-id="end-to-end-neural-systems">End-to-end Neural Systems</h3>
+<p>To circumvent error propagation, modern systems use a single, unified deep neural network—often a transformer architecture—that maps raw audio directly to speaker-labeled segments.</p>
+<p>These models have been proposed to learn fixed-dimensional embeddings and scoring functions simultaneously, matching or exceeding the performance of traditional i-vector-based pipelines.</p>
+<ul>
+<li>Advantages: They excel at capturing complex patterns, making them more robust in challenging scenarios like overlapping speech, subtle voice changes, and brief utterances.</li>
+<li>Disadvantages: This approach is a “black box”, offering far less interpretability, which makes debugging errors difficult.</li>
+</ul>
+</section>
+</section>
+<section id="measuring-success-the-diarization-error-rate-der" class="level2">
+<h2 class="anchored" data-anchor-id="measuring-success-the-diarization-error-rate-der">Measuring Success: The Diarization Error Rate (DER)</h2>
+<p>The industry-standard metric for evaluating a system’s performance is the Diarization Error Rate (DER). It measures the fraction of time that is not attributed correctly to a speaker or non-speech.</p>
+<p>The DER is the sum of three critical errors:</p>
+<ul>
+<li>Speaker Error: The percentage of scored time that a speaker ID is assigned to the wrong speaker. This is a core diarization system error, unrelated to speech/non-speech detection.</li>
+<li>False Alarm Speech: The percentage of time a non-speech segment (like silence) is incorrectly labeled as a speaker. This typically results from a VAD error.</li>
+<li>Missed Speech: The percentage of time a speaker’s voice is incorrectly labeled as non-speech. This is also a VAD-related error, not a clustering fault.</li>
 </ul>
 
 
